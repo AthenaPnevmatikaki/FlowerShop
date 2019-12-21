@@ -1,5 +1,6 @@
+import json
 class User:
-    def __init__(self, user_id=0, email=None, password=None):
+    def __init__(self, user_id=0, email=None, password=None, user_dict=None):
         if user_dict is None:
             self.id=user_id
             self.email=email
