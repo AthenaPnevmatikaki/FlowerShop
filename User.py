@@ -23,7 +23,7 @@ class User:
             self.password=None
 
     def to_dict(self):
-        return {'id': self.user_id, 'email': self.email, 'password': self.password}
+        return {'id': self.id, 'email': self.email, 'password': self.password}
 
     def to_json(self):
         return json.dumps(self.to_dict(), indent=4, ensure_ascii=False)
