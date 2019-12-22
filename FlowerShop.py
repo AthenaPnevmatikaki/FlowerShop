@@ -49,7 +49,7 @@ class FlowerShop:
         for bouquet in self.bouquets:
             bouquets.append(bouquet.to_dict())
         users=[]
-        for users in self.users:
+        for user in self.users:
             users.append(user.to_dict())
         return {'name': self.name, 'loged_in_user': self.loged_in_user,
                 'flowers_id_counter': self.flowers_id_counter, 'flowers': flowers,
@@ -79,6 +79,6 @@ class FlowerShop:
         self.bouquets.append(bouquet)
 
     def add_user(self,user):  #
-        self.user_id_counter+= 1
+        self.users_id_counter+= 1
         user.id= self.users_id_counter
         self.users.append(user)
