@@ -38,5 +38,13 @@
             ],
             "image": "red_roses_carnations.jpg"
         }
+    ],
+    "users_id_counter": 1,
+    "users": [
+        {
+            "id": 1,
+            "email": "a.pnevmatikaki@gmail.com",
+            "password": "1234"
+        }
     ]
 }
