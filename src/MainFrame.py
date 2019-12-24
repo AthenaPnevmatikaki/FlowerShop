@@ -1,5 +1,6 @@
 from tkinter import *
 from LoginFrame import LoginFrame
+from RegisterFrame import RegisterFrame #
 
 
 class MainFrame(Frame):
@@ -25,8 +26,11 @@ class MainFrame(Frame):
         login_dialog.focus_force()
         LoginFrame(root=login_dialog, parent=self, data=self.flower_shop)
 
-    def register(self):
-        print("Register")
+    def register(self): #
+        register_dialog = Toplevel()
+        register_dialog.geometry("400x300")
+        register_dialog.focus_force()
+        RegisterFrame(root=register_dialog, parent=self, data=self.flower_shop)
 
     def on_successful_login(self):
         print(self.flower_shop.to_json())
