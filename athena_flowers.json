@@ -46,5 +46,13 @@
             "email": "a.pnevmatikaki@gmail.com",
             "password": "1234"
         }
+    ],
+    "orders_id_counter": 1,
+    "orders": [
+        {
+            "id": 1,
+            "user": 1,
+            "bouquet": 1
+        }
     ]
 }

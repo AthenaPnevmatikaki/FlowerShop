@@ -2,10 +2,11 @@ from tkinter import *
 from Flower import Flower
 from User import User
 from Bouquet import Bouquet
+from Order import Order
 from FlowerShop import FlowerShop
 from MainFrame import MainFrame
 
-flower_shop = FlowerShop("Athena's Flowers", [], [], [])
+flower_shop = FlowerShop("Athena's Flowers", [], [], [], [])
 
 flower = Flower(flower_dict={'type': 'Rose', 'color': 'Red', 'name': 'King Edward red rose', 'price': 4.5,
                              'image': 'king_Edward_red_rose.jpg'})
@@ -21,8 +22,11 @@ flower_shop.add_bouquet(bouquet)
 user = User(user_dict={'email': 'a.pnevmatikaki@gmail.com', 'password': '1234'})
 flower_shop.add_user(user)
 
+order = Order(order_dict={'user': 1, 'bouquet': 1}, bouquets=flower_shop.bouquets)
+flower_shop.add_order(order)
+
 flower_shop.save('../athena_flowers.json')
-flower_shop = FlowerShop("", [], [], [])
+flower_shop = FlowerShop("", [], [], [], [])
 print('Empty flower shop')
 
 print(flower_shop.to_json())

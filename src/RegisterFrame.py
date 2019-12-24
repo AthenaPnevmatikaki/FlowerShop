@@ -9,7 +9,7 @@ class RegisterFrame(Frame):
         self.init_register_frame()
 
     def init_register_frame(self):
-        global  username, password, emailaddress, username_entry, password_entry, emailaddress_entry
+        global username, password, emailaddress, username_entry, password_entry, emailaddress_entry
         self.root.title("Register")
         username = StringVar()
         password = StringVar()
