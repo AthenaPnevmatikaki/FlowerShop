@@ -36,8 +36,11 @@ class MainFrame(Frame):
 
     def on_successful_login(self):
         print(self.flower_shop.to_json())
+        self.login_dialog.destroy()
+        # TODO: show logged in user in GUI
 
     def on_successful_register(self):
         print(self.flower_shop.to_json())
         self.flower_shop.save('../athena_flowers.json')
         self.register_dialog.destroy()
+        # TODO: show logged in user in GUI
