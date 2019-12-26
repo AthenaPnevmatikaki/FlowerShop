@@ -94,9 +94,18 @@ class FlowerShop:
         self.bouquets.append(bouquet)
 
     def add_user(self, user):
-        self.users_id_counter += 1
-        user.id = self.users_id_counter
-        self.users.append(user)
+        user_already_exists = False
+        for existing_user in self.users:
+            if existing_user.username == user.username:
+                user_already_exists = True
+                break
+        if user_already_exists:
+            return False
+        else:
+            self.users_id_counter += 1
+            user.id = self.users_id_counter
+            self.users.append(user)
+            return True
 
     def add_order(self, order):
         self.orders_id_counter += 1

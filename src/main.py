@@ -18,7 +18,7 @@ def initialise_flower_shop():
     bouquet = Bouquet(bouquet_dict={'name': 'Red rose & carnations', 'flowers': [1, 1, 1, 1, 1, 1, 2, 2, 2],
                                     'image': 'red_roses_carnations.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    user = User(user_dict={'email': 'a.pnevmatikaki@gmail.com', 'password': '1234'})
+    user = User(user_dict={'email': 'a.pnevmatikaki@gmail.com', 'password': '1234', 'username': 'apne'})
     flower_shop.add_user(user)
     order = Order(order_dict={'user': 1, 'bouquet': 1}, bouquets=flower_shop.bouquets)
     flower_shop.add_order(order)
@@ -32,7 +32,7 @@ if os.path.exists('../athena_flowers.json'):
 else:
     print('Initialising flower shop')
     initialise_flower_shop()
-#print(flower_shop.to_json())
+print(flower_shop.to_json())
 print(f'\nBouquet {flower_shop.bouquets[0].name} costs {flower_shop.bouquets[0].price}')
 
 root = Tk()

@@ -9,6 +9,8 @@ class MainFrame(Frame):
         self.root = root
         self.flower_shop = data
         self.init_main_frame()
+        self.login_dialog = None
+        self.register_dialog = None
 
     def init_main_frame(self):
         self.root.title(self.flower_shop.name)
@@ -21,16 +23,21 @@ class MainFrame(Frame):
         menu.add_cascade(label="User", menu=user)
 
     def login(self):
-        login_dialog = Toplevel()
-        login_dialog.geometry("400x300")
-        login_dialog.focus_force()
-        LoginFrame(root=login_dialog, parent=self, data=self.flower_shop)
+        self.login_dialog = Toplevel()
+        self.login_dialog.geometry("400x300")
+        self.login_dialog.focus_force()
+        LoginFrame(root=self.login_dialog, parent=self, data=self.flower_shop)
 
-    def register(self): #
-        register_dialog = Toplevel()
-        register_dialog.geometry("400x300")
-        register_dialog.focus_force()
-        RegisterFrame(root=register_dialog, parent=self, data=self.flower_shop)
+    def register(self):
+        self.register_dialog = Toplevel()
+        self.register_dialog.geometry("400x300")
+        self.register_dialog.focus_force()
+        RegisterFrame(root=self.register_dialog, parent=self, data=self.flower_shop)
 
     def on_successful_login(self):
         print(self.flower_shop.to_json())
+
+    def on_successful_register(self):
+        print(self.flower_shop.to_json())
+        self.flower_shop.save('../athena_flowers.json')
+        self.register_dialog.destroy()

@@ -1,4 +1,6 @@
 from tkinter import *
+from User import User
+
 
 class RegisterFrame(Frame):
     def __init__(self, root=None, parent=None, data=None):
@@ -27,21 +29,11 @@ class RegisterFrame(Frame):
         Button(self.root, text="Register", bg="red", width="12", height="1", command=lambda:self.register_user()).pack()
 
     def register_user(self):
-        username_info = username.get()
-        password_info = password.get()
-        emailaddress_info = emailaddress.get()
-
-        #user = User(user_dict={'id':'1','email': str(emailaddress_info), 'password':str(password_info)})
-        #user.to_json()
-
-        file = open(username_info, "w")
-        file.write(username_info + "\n")
-        file.write(password_info + "\n")
-        file.write(emailaddress_info)
-        file.close()
-
-        username_entry.delete(0, END)
-        password_entry.delete(0, END)
-        emailaddress_entry.delete(0, END)
-        Label(self.root, text="Επιτυχής Εγγραφή", fg="green", font=("callibri", 13)).pack()
+        user = User(user_dict={'email': str(emailaddress.get()), 'password': str(password.get()),
+                               'username': str(username.get())})
+        if self.flower_shop.add_user(user):
+            self.parent.on_successful_register()
+        else:
+            username_entry.delete(0, 'end')
+            Label(self.root, text="Username already exists", fg="red", font=("callibri", 13)).pack()
 
