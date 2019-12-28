@@ -1,0 +1,65 @@
+{
+    "name": "Athena's Flowers",
+    "user": null,
+    "flowers_id_counter": 2,
+    "flowers": [
+        {
+            "id": 1,
+            "type": "Rose",
+            "color": "Red",
+            "name": "King Edward red rose",
+            "price": 4.5,
+            "image": "king_Edward_red_rose.jpg"
+        },
+        {
+            "id": 2,
+            "type": "Carnation",
+            "color": "Red",
+            "name": "Red carnation",
+            "price": 2.5,
+            "image": "red_carnation.jpg"
+        }
+    ],
+    "bouquets_id_counter": 1,
+    "bouquets": [
+        {
+            "id": 1,
+            "name": "Red rose & carnations",
+            "flowers": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2,
+                2,
+                2
+            ],
+            "image": "red_roses_carnations.jpg"
+        }
+    ],
+    "users_id_counter": 2,
+    "users": [
+        {
+            "id": 1,
+            "email": "a.pnevmatikaki@gmail.com",
+            "password": "1234",
+            "username": "apne"
+        },
+        {
+            "id": 2,
+            "email": "marianabparasiri@gmail.com",
+            "password": "12345",
+            "username": "mpar"
+        }
+    ],
+    "orders_id_counter": 1,
+    "orders": [
+        {
+            "id": 1,
+            "user": 1,
+            "bouquet": 1
+        }
+    ]
+}
