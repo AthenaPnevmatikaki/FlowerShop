@@ -1,6 +1,6 @@
 {
-    "name": "Athena's Flowers",
-    "user": null,
+    "name": "Το Λέλουδο",
+    "logged_user": null,
     "flowers_id_counter": 2,
     "flowers": [
         {

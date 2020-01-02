@@ -53,6 +53,10 @@ class FlowerShop:
         self.bouquets_id_counter = len(self.bouquets)
 
     def to_dict(self):
+        if self.logged_user is None:
+            logged_user = None
+        else:
+            logged_user = self.logged_user.to_dict()
         flowers = []
         for flower in self.flowers:
             flowers.append(flower.to_dict())
@@ -65,7 +69,7 @@ class FlowerShop:
         orders = []
         for order in self.orders:
             orders.append((order.to_dict()))
-        return {'name': self.name, 'user': self.logged_user,
+        return {'name': self.name, 'logged_user': logged_user,
                 'flowers_id_counter': self.flowers_id_counter, 'flowers': flowers,
                 'bouquets_id_counter': self.bouquets_id_counter, 'bouquets': bouquets,
                 'users_id_counter': self.users_id_counter, 'users': users,

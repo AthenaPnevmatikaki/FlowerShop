@@ -29,11 +29,12 @@ class MainFrame(Frame):
         info.add_command(label="Contact Us", command=self.information)
         menu.add_cascade(label="Info", menu=info)
         user = Menu(menu)
-        menu.add_cascade(label="User", menu=user)
         if self.flower_shop.logged_user is None:
+            menu.add_cascade(label="User", menu=user)
             user.add_command(label="Login", command=self.login)
             user.add_command(label="Register", command=self.register)
         else:
+            menu.add_cascade(label=self.flower_shop.logged_user.username, menu=user)
             user.add_command(label="Log out", command=self.logout)
 
     def login(self):
@@ -62,7 +63,7 @@ class MainFrame(Frame):
 
     def on_successful_register(self):
         print(self.flower_shop.to_json())
-        self.flower_shop.save('../athena_flowers.json')
+        self.flower_shop.save('../flower_shop.json')
         self.register_dialog.destroy()
         self.root.attributes('-disabled', 'false')
         self.root.focus_force()

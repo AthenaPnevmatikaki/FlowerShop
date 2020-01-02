@@ -22,13 +22,13 @@ def initialise_flower_shop():
     flower_shop.add_user(user)
     order = Order(order_dict={'user': 1, 'bouquet': 1}, bouquets=flower_shop.bouquets)
     flower_shop.add_order(order)
-    flower_shop.save('../athena_flowers.json')
+    flower_shop.save('../flower_shop.json')
 
 
-flower_shop = FlowerShop("Athena's Flowers", [], [], [], [])
-if os.path.exists('../athena_flowers.json'):
+flower_shop = FlowerShop("Το Λέλουδο", [], [], [], [])
+if os.path.exists('../flower_shop.json'):
     print('Loading flower shop data')
-    flower_shop.load('../athena_flowers.json')
+    flower_shop.load('../flower_shop.json')
 else:
     print('Initialising flower shop')
     initialise_flower_shop()

@@ -30,7 +30,7 @@ class LoginFrame(Frame):
             if user.username == str(username_verify.get()):
                 username_found = True
                 if user.password == str(password_verify.get()):
-                    self.flower_shop.logged_user = user.id
+                    self.flower_shop.logged_user = user
                     self.parent.on_successful_login()
                 else:
                     Label(self.root, text="Wrong username or password.", fg="red", font=("callibri", 13)).pack()
