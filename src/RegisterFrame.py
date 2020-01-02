@@ -27,6 +27,7 @@ class RegisterFrame(Frame):
         emailaddress_entry.pack()
         Label(self.root, text="").pack()
         Button(self.root, text="Register", bg="red", width="12", height="1", command=lambda:self.register_user()).pack()
+        self.root.protocol('WM_DELETE_WINDOW', self.on_closing)
 
     def register_user(self):
         user = User(user_dict={'email': str(emailaddress.get()), 'password': str(password.get()),
@@ -37,4 +38,7 @@ class RegisterFrame(Frame):
         else:
             username_entry.delete(0, 'end')
             Label(self.root, text="Username already exists", fg="red", font=("callibri", 13)).pack()
+
+    def on_closing(self):
+        self.parent.on_successful_register()
 

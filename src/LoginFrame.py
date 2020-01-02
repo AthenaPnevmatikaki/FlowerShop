@@ -1,5 +1,4 @@
 from tkinter import *
-import os
 
 
 class LoginFrame(Frame):
@@ -22,12 +21,21 @@ class LoginFrame(Frame):
         password_entry1 = Entry(self.root, textvariable=password_verify)
         password_entry1.pack()
         Label(self.root, text="").pack()
-        Button(self.root, text="Login", bg="red", width="12", height="1", command=lambda:self.login_verify()).pack()
+        Button(self.root, text="Login", bg="red", width="12", height="1", command=lambda: self.login_verify()).pack()
+        self.root.protocol('WM_DELETE_WINDOW', self.on_closing)
 
     def login_verify(self):
+        username_found = False
         for user in self.flower_shop.users:
-            if user.username == str(username_verify.get()) and user.password == str(password_verify.get()):
-                self.flower_shop.logged_user = user.id
-                self.parent.on_successful_login()
-            else:
-                Label(self.root, text="Wrong username or password.", fg="red", font=("callibri", 13)).pack()
+            if user.username == str(username_verify.get()):
+                username_found = True
+                if user.password == str(password_verify.get()):
+                    self.flower_shop.logged_user = user.id
+                    self.parent.on_successful_login()
+                else:
+                    Label(self.root, text="Wrong username or password.", fg="red", font=("callibri", 13)).pack()
+        if not username_found:
+            Label(self.root, text="Wrong username or password.", fg="red", font=("callibri", 13)).pack()
+
+    def on_closing(self):
+        self.parent.on_successful_login()
