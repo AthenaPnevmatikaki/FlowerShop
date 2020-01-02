@@ -33,7 +33,7 @@ class RegisterFrame(Frame):
         user = User(user_dict={'email': str(emailaddress.get()), 'password': str(password.get()),
                                'username': str(username.get())})
         if self.flower_shop.add_user(user):
-            self.flower_shop.logged_user = self.flower_shop.users[self.flower_shop.user_id_counter - 1]
+            self.flower_shop.logged_user = self.flower_shop.users[self.flower_shop.users_id_counter - 1]
             self.parent.on_successful_register()
         else:
             username_entry.delete(0, 'end')

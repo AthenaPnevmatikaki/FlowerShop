@@ -58,7 +58,6 @@ class MainFrame(Frame):
         self.login_dialog.destroy()
         self.root.attributes('-disabled', 'false')
         self.root.focus_force()
-        # TODO: show logged in user in GUI
         self.display_menu()
 
     def on_successful_register(self):
@@ -67,7 +66,6 @@ class MainFrame(Frame):
         self.register_dialog.destroy()
         self.root.attributes('-disabled', 'false')
         self.root.focus_force()
-        # TODO: show logged in user in GUI
         self.display_menu()
 
     def information(self):

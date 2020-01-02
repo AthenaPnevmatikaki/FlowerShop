@@ -1,6 +1,11 @@
 {
     "name": "Το Λέλουδο",
-    "logged_user": null,
+    "logged_user": {
+        "id": 3,
+        "email": "od.kopakakis@gmail.com",
+        "password": "1234",
+        "username": "okop"
+    },
     "flowers_id_counter": 2,
     "flowers": [
         {
@@ -39,7 +44,7 @@
             "image": "red_roses_carnations.jpg"
         }
     ],
-    "users_id_counter": 2,
+    "users_id_counter": 3,
     "users": [
         {
             "id": 1,
@@ -50,8 +55,14 @@
         {
             "id": 2,
             "email": "marianabparasiri@gmail.com",
-            "password": "12345",
+            "password": "1234",
             "username": "mpar"
+        },
+        {
+            "id": 3,
+            "email": "od.kopakakis@gmail.com",
+            "password": "1234",
+            "username": "okop"
         }
     ],
     "orders_id_counter": 1,
