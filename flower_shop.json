@@ -1,0 +1,163 @@
+{
+    "name": "Flower Shop",
+    "logged_user": null,
+    "flowers_id_counter": 5,
+    "flowers": [
+        {
+            "id": 1,
+            "type": "Rose",
+            "color": "Red",
+            "name": "King Edward red rose",
+            "price": 4.5,
+            "image": "king_Edward_red_rose.jpg"
+        },
+        {
+            "id": 2,
+            "type": "Carnation",
+            "color": "Red",
+            "name": "Red carnation",
+            "price": 2.5,
+            "image": "red_carnation.jpg"
+        },
+        {
+            "id": 3,
+            "type": "Sunflower",
+            "color": "Yellow",
+            "name": "Sunflower",
+            "price": 3,
+            "image": "sunflower.jpg"
+        },
+        {
+            "id": 4,
+            "type": "Lily",
+            "color": "White",
+            "name": "Lily",
+            "price": 5,
+            "image": "lily.jpg"
+        },
+        {
+            "id": 5,
+            "type": "Iris",
+            "color": "Purple",
+            "name": "Iris",
+            "price": 3.5,
+            "image": "iris.jpg"
+        }
+    ],
+    "bouquets_id_counter": 6,
+    "bouquets": [
+        {
+            "id": 1,
+            "name": "Red rose & carnations",
+            "flowers": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2,
+                2,
+                2
+            ],
+            "image": "red_roses_carnations.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Sunflowers & lilies",
+            "flowers": [
+                3,
+                3,
+                3,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+            ],
+            "image": "sunflowers_lilies.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Red rose & lilies",
+            "flowers": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                4,
+                4,
+                4,
+                4
+            ],
+            "image": "red_roses_lilies.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Sunflowers & carnations",
+            "flowers": [
+                3,
+                3,
+                3,
+                3,
+                2,
+                2,
+                2,
+                2,
+                2
+            ],
+            "image": "sunflowers_carnations.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Iris & carnations",
+            "flowers": [
+                5,
+                5,
+                5,
+                5,
+                2,
+                2,
+                2,
+                2,
+                2
+            ],
+            "image": "Iris_carnations.jpg"
+        },
+        {
+            "id": 6,
+            "name": "Iris & lilies",
+            "flowers": [
+                5,
+                5,
+                5,
+                5,
+                5,
+                4,
+                4,
+                4,
+                4
+            ],
+            "image": "iris_lilies.jpg"
+        }
+    ],
+    "users_id_counter": 1,
+    "users": [
+        {
+            "id": 1,
+            "email": "a.pnevmatikaki@gmail.com",
+            "password": "1234",
+            "username": "apne"
+        }
+    ],
+    "orders_id_counter": 1,
+    "orders": [
+        {
+            "id": 1,
+            "user": 1,
+            "bouquet": 1
+        }
+    ]
+}
