@@ -41,4 +41,3 @@ class RegisterFrame(Frame):
 
     def on_closing(self):
         self.parent.on_successful_register()
-

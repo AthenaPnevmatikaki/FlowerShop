@@ -5,9 +5,16 @@ from InfoFrame import InfoFrame
 
 
 class MainFrame(Frame):
-    def __init__(self, root=None, data=None):
+    def __init__(self, root=None, data=None, ncols=None, nrows=None):
         Frame.__init__(self, root)
         self.root = root
+        self.ncols = ncols
+        if ncols is None:
+            self.ncols = 4
+        self.nrows = nrows
+        if nrows is None:
+            self.nrows = 3
+        self.frames = []
         self.flower_shop = data
         self.init_main_frame()
         self.login_dialog = None
@@ -16,8 +23,24 @@ class MainFrame(Frame):
 
     def init_main_frame(self):
         self.root.title(self.flower_shop.name)
-        self.pack(fill=BOTH, expand=1)
         self.display_menu()
+        self.root.columnconfigure(tuple(range(0, self.ncols)), weight=1)
+        self.root.rowconfigure(tuple(range(0, self.nrows)), weight=1)
+        for row in range(0, self.nrows):
+            for col in range(0, self.ncols):
+                frame = Frame(self.root)
+                frame.grid(row=row, column=col, padx=5, pady=5)
+                self.frames.append(frame)
+        Label(self.frames[0], text="I am").pack()
+        Label(self.frames[0], text='the first grid position').pack()
+        Label(self.frames[1], text="I am").pack()
+        Label(self.frames[1], text='at position (0, 1)').pack()
+        Label(self.frames[6], text="I am").pack()
+        Label(self.frames[6], text='at position (1, 1)').pack()
+        Label(self.frames[7], text="I am").pack()
+        Label(self.frames[7], text='at position (1, 2)').pack()
+        Label(self.frames[len(self.frames) - 1], text="I am").pack()
+        Label(self.frames[len(self.frames) - 1], text='the last grid position').pack()
 
     def display_menu(self):
         menu = Menu(self.root)
