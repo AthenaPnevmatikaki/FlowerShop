@@ -46,3 +46,6 @@ class Bouquet:
 
     def to_json(self):
         return json.dumps(self.to_dict(), indent=4, ensure_ascii=False)
+
+    def buy(self):
+        print("Buying the "+self.name)

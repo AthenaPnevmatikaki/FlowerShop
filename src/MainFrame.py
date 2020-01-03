@@ -47,10 +47,7 @@ class MainFrame(Frame):
         Label(self.frames[frame_index], text='Price: '+str(bouquet.price)+"€").pack()
         if self.flower_shop.logged_user is not None:
             Button(self.frames[frame_index], text="Buy", bg="RosyBrown2", width="12", height="1",
-                   command=lambda: self.buy(bouquet)).pack()
-
-    def buy(self, bouquet):
-        print("Buying the "+bouquet.name)
+                   command=lambda: bouquet.buy()).pack()
 
     def display_menu(self):
         menu = Menu(self.root)
