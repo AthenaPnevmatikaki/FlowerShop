@@ -24,7 +24,6 @@ class MainFrame(Frame):
 
     def init_main_frame(self):
         self.root.title(self.flower_shop.name)
-        self.display_menu()
         self.root.columnconfigure(tuple(range(0, self.ncols)), weight=1)
         self.root.rowconfigure(tuple(range(0, self.nrows)), weight=1)
         for row in range(0, self.nrows):
@@ -32,12 +31,11 @@ class MainFrame(Frame):
                 frame = Frame(self.root)
                 frame.grid(row=row, column=col, padx=5, pady=5)
                 self.frames.append(frame)
-        counter = 0
-        for bouquet in self.flower_shop.bouquets:
-            self.display_bouquet(bouquet, counter)
-            counter += 1
+        self.display_menu()
 
     def display_bouquet(self, bouquet, frame_index):
+        for widget in self.frames[frame_index].winfo_children():
+            widget.destroy()
         Label(self.frames[frame_index], text=bouquet.name).pack()
         img = Image.open("../photos/"+bouquet.image)
         img = img.resize((130, 130), Image.ANTIALIAS)
@@ -46,7 +44,9 @@ class MainFrame(Frame):
         label.image = img
         label.pack()
         Label(self.frames[frame_index], text='Price: '+str(bouquet.price)).pack()
-        Button(self.frames[frame_index], text="Buy", bg="yellow", width="12", height="1", command=lambda: self.buy(bouquet)).pack()
+        if self.flower_shop.logged_user is not None:
+            Button(self.frames[frame_index], text="Buy", bg="yellow", width="12", height="1",
+                   command=lambda: self.buy(bouquet)).pack()
 
     def buy(self, bouquet):
         print("Buying the "+bouquet.name)
@@ -68,6 +68,10 @@ class MainFrame(Frame):
         else:
             menu.add_cascade(label=self.flower_shop.logged_user.username, menu=user)
             user.add_command(label="Log out", command=self.logout)
+        counter = 0
+        for bouquet in self.flower_shop.bouquets:
+            self.display_bouquet(bouquet, counter)
+            counter += 1
 
     def login(self):
         self.login_dialog = Toplevel()
