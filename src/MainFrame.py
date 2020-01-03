@@ -1,4 +1,5 @@
 from tkinter import *
+from PIL import ImageTk, Image
 from LoginFrame import LoginFrame
 from RegisterFrame import RegisterFrame
 from InfoFrame import InfoFrame
@@ -31,16 +32,24 @@ class MainFrame(Frame):
                 frame = Frame(self.root)
                 frame.grid(row=row, column=col, padx=5, pady=5)
                 self.frames.append(frame)
-        Label(self.frames[0], text="I am").pack()
-        Label(self.frames[0], text='the first grid position').pack()
-        Label(self.frames[1], text="I am").pack()
-        Label(self.frames[1], text='at position (0, 1)').pack()
-        Label(self.frames[6], text="I am").pack()
-        Label(self.frames[6], text='at position (1, 1)').pack()
-        Label(self.frames[7], text="I am").pack()
-        Label(self.frames[7], text='at position (1, 2)').pack()
-        Label(self.frames[len(self.frames) - 1], text="I am").pack()
-        Label(self.frames[len(self.frames) - 1], text='the last grid position').pack()
+        counter = 0
+        for bouquet in self.flower_shop.bouquets:
+            self.display_bouquet(bouquet, counter)
+            counter += 1
+
+    def display_bouquet(self, bouquet, frame_index):
+        Label(self.frames[frame_index], text=bouquet.name).pack()
+        img = Image.open("../photos/"+bouquet.image)
+        img = img.resize((130, 130), Image.ANTIALIAS)
+        img = ImageTk.PhotoImage(img)
+        label = Label(self.frames[frame_index], image=img)
+        label.image = img
+        label.pack()
+        Label(self.frames[frame_index], text='Price: '+str(bouquet.price)).pack()
+        Button(self.frames[frame_index], text="Buy", bg="yellow", width="12", height="1", command=lambda: self.buy(bouquet)).pack()
+
+    def buy(self, bouquet):
+        print("Buying the "+bouquet.name)
 
     def display_menu(self):
         menu = Menu(self.root)

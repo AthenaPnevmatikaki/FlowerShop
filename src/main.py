@@ -27,13 +27,13 @@ def initialise_flower_shop():
     bouquet = Bouquet(bouquet_dict={'name': 'Red rose & carnations', 'flowers': [1, 1, 1, 1, 1, 1, 2, 2, 2],
                                     'image': 'red_roses_carnations.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'sunflowers & lilies', 'flowers': [3, 3, 3, 4, 4, 4, 4, 4, 4],
+    bouquet = Bouquet(bouquet_dict={'name': 'Sunflowers & lilies', 'flowers': [3, 3, 3, 4, 4, 4, 4, 4, 4],
                                     'image': 'sunflowers_lilies.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
     bouquet = Bouquet(bouquet_dict={'name': 'Red rose & lilies', 'flowers': [1, 1, 1, 1, 1, 4, 4, 4, 4],
                                     'image': 'red_roses_lilies.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'sunflowers & carnations', 'flowers': [3, 3, 3, 3, 2, 2, 2, 2, 2],
+    bouquet = Bouquet(bouquet_dict={'name': 'Sunflowers & carnations', 'flowers': [3, 3, 3, 3, 2, 2, 2, 2, 2],
                                     'image': 'sunflowers_carnations.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
     bouquet = Bouquet(bouquet_dict={'name': 'Iris & carnations', 'flowers': [5, 5, 5, 5, 2, 2, 2, 2, 2],
@@ -49,7 +49,7 @@ def initialise_flower_shop():
     flower_shop.save('../flower_shop.json')
 
 
-flower_shop = FlowerShop("Το Λέλουδο", [], [], [], [])
+flower_shop = FlowerShop("Flower Shop", [], [], [], [])
 if os.path.exists('../flower_shop.json'):
     print('Loading flower shop data')
     flower_shop.load('../flower_shop.json')
@@ -61,5 +61,5 @@ print(f'\nBouquet {flower_shop.bouquets[0].name} costs {flower_shop.bouquets[0].
 
 root = Tk()
 root.geometry("1200x700+300+0")
-app = MainFrame(root=root, data=flower_shop)
+app = MainFrame(root=root, data=flower_shop, ncols=5, nrows=4)
 root.mainloop()
