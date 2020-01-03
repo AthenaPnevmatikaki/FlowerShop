@@ -24,22 +24,22 @@ def initialise_flower_shop():
     flower = Flower(flower_dict={'type': 'Iris', 'color': 'Purple', 'name': 'Iris', 'price': 3.5,
                                  'image': 'iris.jpg'})
     flower_shop.add_flower(flower)
-    bouquet = Bouquet(bouquet_dict={'name': 'Red rose & carnations', 'flowers': [1, 1, 1, 1, 1, 1, 2, 2, 2],
+    bouquet = Bouquet(bouquet_dict={'name': 'Red Rose & Carnations', 'flowers': [1, 1, 1, 1, 1, 1, 2, 2, 2],
                                     'image': 'red_roses_carnations.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'Sunflowers & lilies', 'flowers': [3, 3, 3, 4, 4, 4, 4, 4, 4],
+    bouquet = Bouquet(bouquet_dict={'name': 'Sunflowers & Lilies', 'flowers': [3, 3, 3, 4, 4, 4, 4, 4, 4],
                                     'image': 'sunflowers_lilies.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'Red rose & lilies', 'flowers': [1, 1, 1, 1, 1, 4, 4, 4, 4],
+    bouquet = Bouquet(bouquet_dict={'name': 'Red Rose & Lilies', 'flowers': [1, 1, 1, 1, 1, 4, 4, 4, 4],
                                     'image': 'red_roses_lilies.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'Sunflowers & carnations', 'flowers': [3, 3, 3, 3, 2, 2, 2, 2, 2],
+    bouquet = Bouquet(bouquet_dict={'name': 'Sunflowers & Carnations', 'flowers': [3, 3, 3, 3, 2, 2, 2, 2, 2],
                                     'image': 'sunflowers_carnations.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'Iris & carnations', 'flowers': [5, 5, 5, 5, 2, 2, 2, 2, 2],
+    bouquet = Bouquet(bouquet_dict={'name': 'Iris & Carnations', 'flowers': [5, 5, 5, 5, 2, 2, 2, 2, 2],
                                     'image': 'Iris_carnations.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
-    bouquet = Bouquet(bouquet_dict={'name': 'Iris & lilies', 'flowers': [5, 5, 5, 5, 5, 4, 4, 4, 4],
+    bouquet = Bouquet(bouquet_dict={'name': 'Iris & Lilies', 'flowers': [5, 5, 5, 5, 5, 4, 4, 4, 4],
                                     'image': 'iris_lilies.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
     user = User(user_dict={'email': 'a.pnevmatikaki@gmail.com', 'password': '1234', 'username': 'apne'})

@@ -48,7 +48,7 @@
     "bouquets": [
         {
             "id": 1,
-            "name": "Red rose & carnations",
+            "name": "Red Rose & Carnations",
             "flowers": [
                 1,
                 1,
@@ -64,7 +64,7 @@
         },
         {
             "id": 2,
-            "name": "Sunflowers & lilies",
+            "name": "Sunflowers & Lilies",
             "flowers": [
                 3,
                 3,
@@ -80,7 +80,7 @@
         },
         {
             "id": 3,
-            "name": "Red rose & lilies",
+            "name": "Red Rose & Lilies",
             "flowers": [
                 1,
                 1,
@@ -96,7 +96,7 @@
         },
         {
             "id": 4,
-            "name": "Sunflowers & carnations",
+            "name": "Sunflowers & Carnations",
             "flowers": [
                 3,
                 3,
@@ -112,7 +112,7 @@
         },
         {
             "id": 5,
-            "name": "Iris & carnations",
+            "name": "Iris & Carnations",
             "flowers": [
                 5,
                 5,
@@ -128,7 +128,7 @@
         },
         {
             "id": 6,
-            "name": "Iris & lilies",
+            "name": "Iris & Lilies",
             "flowers": [
                 5,
                 5,

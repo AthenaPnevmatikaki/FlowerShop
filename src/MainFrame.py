@@ -24,6 +24,7 @@ class MainFrame(Frame):
 
     def init_main_frame(self):
         self.root.title(self.flower_shop.name)
+        #self.root.configure(background="azure")
         self.root.columnconfigure(tuple(range(0, self.ncols)), weight=1)
         self.root.rowconfigure(tuple(range(0, self.nrows)), weight=1)
         for row in range(0, self.nrows):
@@ -43,9 +44,9 @@ class MainFrame(Frame):
         label = Label(self.frames[frame_index], image=img)
         label.image = img
         label.pack()
-        Label(self.frames[frame_index], text='Price: '+str(bouquet.price)).pack()
+        Label(self.frames[frame_index], text='Price: '+str(bouquet.price)+"€").pack()
         if self.flower_shop.logged_user is not None:
-            Button(self.frames[frame_index], text="Buy", bg="yellow", width="12", height="1",
+            Button(self.frames[frame_index], text="Buy", bg="RosyBrown2", width="12", height="1",
                    command=lambda: self.buy(bouquet)).pack()
 
     def buy(self, bouquet):
