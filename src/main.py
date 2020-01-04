@@ -99,5 +99,5 @@ print(f'\nBouquet {flower_shop.bouquets[0].name} costs {flower_shop.bouquets[0].
 
 root = Tk()
 root.geometry("1200x700+300+0")
-app = MainFrame(root=root, data=flower_shop, ncols=5, nrows=4)
+app = MainFrame(root=root, data=flower_shop, ncols=5, nrows=3)
 root.mainloop()

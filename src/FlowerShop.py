@@ -51,6 +51,7 @@ class FlowerShop:
         self.users_id_counter = len(self.users)
         self.flowers_id_counter = len(self.flowers)
         self.bouquets_id_counter = len(self.bouquets)
+        self.logged_user = self.users[0]     #TODO: remove this line
 
     def to_dict(self):
         if self.logged_user is None:

@@ -23,6 +23,9 @@ class MainFrame(Frame):
         self.start = 0
         self.page = 0
         self.pages = 0
+        self.showing = "bouquets"
+        self.flower_counters = [0] * len(self.flower_shop.flowers)
+        self.flower_counter_labels = [Label()] * len(self.flower_shop.flowers)
         self.init_main_frame()
 
     def init_main_frame(self):
@@ -35,21 +38,11 @@ class MainFrame(Frame):
                 frame = Frame(self.root)
                 frame.grid(row=row, column=col, padx=5, pady=5)
                 self.frames.append(frame)
-        self.pages = int((len(self.flower_shop.bouquets) + 1) / (self.ncols * self.nrows))
+        if self.showing == "bouquets":
+            self.pages = int((len(self.flower_shop.bouquets) + 1) / (self.ncols * self.nrows))
+        elif self.showing == "flowers":
+            self.pages = int((len(self.flower_shop.flowers) + 1) / (self.ncols * self.nrows))
         self.display_menu()
-
-    def display_bouquet(self, bouquet, frame_index):
-        Label(self.frames[frame_index], text=bouquet.name).pack()
-        img = Image.open("../photos/"+bouquet.image)
-        img = img.resize((130, 130), Image.ANTIALIAS)
-        img = ImageTk.PhotoImage(img)
-        label = Label(self.frames[frame_index], image=img)
-        label.image = img
-        label.pack()
-        Label(self.frames[frame_index], text='Price: '+str(bouquet.price)+"€").pack()
-        if self.flower_shop.logged_user is not None:
-            Button(self.frames[frame_index], text="Buy", bg="RosyBrown2", width="12", height="1",
-                   command=lambda: bouquet.buy()).pack()
 
     def display_menu(self):
         menu = Menu(self.root)
@@ -77,20 +70,66 @@ class MainFrame(Frame):
         for frame in self.frames:
             for widget in frame.winfo_children():
                 widget.destroy()
-        j = 0
-        for i in range(self.start, self.start+self.nrows*self.ncols-1):
-            if i >= len(self.flower_shop.bouquets):
-                break
-            j = i
-            self.display_bouquet(self.flower_shop.bouquets[i], i-self.start)
+        if self.showing == "bouquets":
+            j = 0
+            for i in range(self.start, self.start+self.nrows*self.ncols-1):
+                if i >= len(self.flower_shop.bouquets):
+                    break
+                j = i
+                self.display_bouquet(self.flower_shop.bouquets[i], i-self.start)
+            if self.flower_shop.logged_user is not None:
+                Button(self.frames[j-self.start+1], text="Create bouquet", bg="RosyBrown2", width="12", height="1",
+                       command=lambda: self.create_bouquet()).pack()
+            if self.page > 0:
+                Button(self.frames[j - self.start+1], text="Previous Page", bg="RosyBrown2", width="12", height="1",
+                       command=lambda: self.previous_page()).pack()
+            if self.page < self.pages and len(self.flower_shop.bouquets) >= self.ncols*self.nrows:
+                Button(self.frames[j - self.start+1], text="Next Page", bg="RosyBrown2", width="12", height="1",
+                       command=lambda: self.next_page()).pack()
+        elif self.showing == "flowers":
+            j = 0
+            for i in range(self.start, self.start+self.nrows*self.ncols-1):
+                if i >= len(self.flower_shop.flowers):
+                    break
+                j = i
+                self.display_flower(self.flower_shop.flowers[i], i-self.start)
+            if self.page > 0:
+                Button(self.frames[j - self.start+1], text="Previous Page", bg="RosyBrown2", width="12", height="1",
+                       command=lambda: self.previous_page()).pack()
+            if self.page < self.pages and len(self.flower_shop.flowers) >= self.ncols*self.nrows:
+                Button(self.frames[j - self.start+1], text="Next Page", bg="RosyBrown2", width="12", height="1",
+                       command=lambda: self.next_page()).pack()
+            Button(self.frames[j-self.start+1], text="Create", bg="RosyBrown2", width="12", height="1", command=lambda: self.create_bouquet()).pack()
+            Button(self.frames[j-self.start+1], text="Cancel", bg="RosyBrown2", width="12", height="1", command=lambda: self.create_bouquet()).pack()
+
+    def display_bouquet(self, bouquet, frame_index):
+        Label(self.frames[frame_index], text=bouquet.name).pack()
+        img = Image.open("../photos/"+bouquet.image)
+        img = img.resize((130, 130), Image.ANTIALIAS)
+        img = ImageTk.PhotoImage(img)
+        label = Label(self.frames[frame_index], image=img)
+        label.image = img
+        label.pack()
+        Label(self.frames[frame_index], text='Price: '+str(bouquet.price)+"€").pack()
         if self.flower_shop.logged_user is not None:
-            Button(self.frames[j-self.start+1], text="Create bouquet", bg="RosyBrown2", width="12", height="1").pack()
-        if self.page > 0:
-            Button(self.frames[j - self.start+1], text="Previous Page", bg="RosyBrown2", width="12", height="1",
-                   command=lambda: self.previous_page()).pack()
-        if self.page < self.pages and len(self.flower_shop.bouquets) >= self.ncols*self.nrows:
-            Button(self.frames[j - self.start+1], text="Next Page", bg="RosyBrown2", width="12", height="1",
-                   command=lambda: self.next_page()).pack()
+            Button(self.frames[frame_index], text="Buy", bg="RosyBrown2", width="12", height="1",
+                   command=lambda: bouquet.buy()).pack()
+
+    def display_flower(self, flower, frame_index):
+        Label(self.frames[frame_index], text=flower.name).grid(row=0, columnspan=3)
+        img = Image.open("../photos/"+flower.image)
+        img = img.resize((130, 130), Image.ANTIALIAS)
+        img = ImageTk.PhotoImage(img)
+        label = Label(self.frames[frame_index], image=img)
+        label.image = img
+        label.grid(row=1, columnspan=3)
+        Label(self.frames[frame_index], text='Price: '+str(flower.price)+"€").grid(row=2, columnspan=3)
+        Button(self.frames[frame_index], text="-", bg="RosyBrown2", width="3", height="1",
+               command=lambda: self.decrease_flower(flower)).grid(row=3, column=0)
+        self.flower_counter_labels[flower.id - 1] = Label(self.frames[frame_index], text='0')
+        self.flower_counter_labels[flower.id - 1].grid(row=3, column=1)
+        Button(self.frames[frame_index], text="+", bg="RosyBrown2", width="3", height="1",
+               command=lambda: self.increase_flower(flower)).grid(row=3, column=2)
 
     def login(self):
         self.login_dialog = Toplevel()
@@ -155,3 +194,21 @@ class MainFrame(Frame):
         self.page -= 1
         self.start = self.start - self.nrows*self.ncols + 1
         self.display_menu()
+
+    def create_bouquet(self):
+        self.frames = []
+        self.showing = "flowers"
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        self.page = 0
+        self.start = 0
+        self.init_main_frame()
+
+    def increase_flower(self, flower):
+        self.flower_counters[flower.id - 1] += 1
+        self.flower_counter_labels[flower.id - 1].config(text=str(self.flower_counters[flower.id-1]))
+
+    def decrease_flower(self, flower):
+        if self.flower_counters[flower.id - 1] > 0:
+            self.flower_counters[flower.id - 1] -= 1
+            self.flower_counter_labels[flower.id - 1].config(text=str(self.flower_counters[flower.id-1]))
