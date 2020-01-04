@@ -1,12 +1,7 @@
 {
     "name": "Flower Shop",
-    "logged_user": {
-        "id": 1,
-        "email": "a.pnevmatikaki@gmail.com",
-        "password": "1234",
-        "username": "apne"
-    },
-    "flowers_id_counter": 15,
+    "logged_user": null,
+    "flowers_id_counter": 22,
     "flowers": [
         {
             "id": 1,
@@ -127,9 +122,65 @@
             "name": "Yellow Tulip",
             "price": 4,
             "image": "yellow tulip.jpg"
+        },
+        {
+            "id": 16,
+            "type": "Snapdragon",
+            "color": "Orange",
+            "name": "Snapdragon",
+            "price": 3,
+            "image": "Snapdragon.jpg"
+        },
+        {
+            "id": 17,
+            "type": "Magnolia",
+            "color": "White",
+            "name": "White Magnolia",
+            "price": 3,
+            "image": "white_magnolia.jpg"
+        },
+        {
+            "id": 18,
+            "type": "Magnolia",
+            "color": "Orange",
+            "name": "Orange Magnolia",
+            "price": 3,
+            "image": "orange_magnolia.jpg"
+        },
+        {
+            "id": 19,
+            "type": "Lily",
+            "color": "Yellow",
+            "name": "Yellow Lily",
+            "price": 3,
+            "image": "yellow_lily.jpg"
+        },
+        {
+            "id": 20,
+            "type": "Chrysanthemum",
+            "color": "Pink",
+            "name": "Pink Chrysanthemum",
+            "price": 3,
+            "image": "pink_chrysanthemum.jpg"
+        },
+        {
+            "id": 21,
+            "type": "Chrysanthemum",
+            "color": "Orange",
+            "name": "Orange Chrysanthemum",
+            "price": 3,
+            "image": "orange_chrysanthemum.jpg"
+        },
+        {
+            "id": 22,
+            "type": "Chrysanthemum",
+            "color": "White",
+            "name": "White Chrysanthemum",
+            "price": 3,
+            "image": "white_chrysanthemum.jpg"
         }
     ],
-    "bouquets_id_counter": 10,
+    "bouquets_id_counter": 13,
     "bouquets": [
         {
             "id": 1,
@@ -267,19 +318,83 @@
         },
         {
             "id": 9,
-            "name": "Sunflowers & Tulips",
+            "name": "Snapdragon compilation",
+            "flowers": [
+                16,
+                16,
+                16,
+                16,
+                16,
+                16,
+                16,
+                16
+            ],
+            "image": "snapdragon_bouquet.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Magnolia compilation",
+            "flowers": [
+                17,
+                17,
+                17,
+                17,
+                17,
+                17
+            ],
+            "image": "Magnolia_bouguet.jpg"
+        },
+        {
+            "id": 11,
+            "name": "Yellow Delight",
             "flowers": [
                 5,
                 5,
                 5,
-                5,
-                13,
-                13,
-                13,
-                13,
-                13
+                19,
+                19,
+                19,
+                16,
+                16,
+                16,
+                16,
+                16
             ],
-            "image": "generic_bouquet.jpg"
+            "image": "Yellow_delight.jpg"
+        },
+        {
+            "id": 12,
+            "name": "Chrysanthemum Compilation",
+            "flowers": [
+                22,
+                22,
+                22,
+                22,
+                22,
+                20,
+                20,
+                20,
+                20
+            ],
+            "image": "chrysanthemum_compilation.jpg"
+        },
+        {
+            "id": 13,
+            "name": "Wild Bloom",
+            "flowers": [
+                21,
+                21,
+                21,
+                16,
+                16,
+                16,
+                3,
+                20,
+                20,
+                18,
+                18
+            ],
+            "image": "wild_bloom.jpg"
         }
     ],
     "users_id_counter": 1,

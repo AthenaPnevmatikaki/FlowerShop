@@ -21,7 +21,7 @@ class LoginFrame(Frame):
         password_entry1 = Entry(self.root, textvariable=password_verify)
         password_entry1.pack()
         Label(self.root, text="").pack()
-        Button(self.root, text="Login", bg="red", width="12", height="1", command=lambda: self.login_verify()).pack()
+        Button(self.root, text="Login", bg="LightSteelBlue2", width="12", height="1", command=lambda: self.login_verify()).pack()
         self.root.protocol('WM_DELETE_WINDOW', self.on_closing)
 
     def login_verify(self):

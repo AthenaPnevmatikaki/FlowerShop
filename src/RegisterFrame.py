@@ -26,7 +26,7 @@ class RegisterFrame(Frame):
         emailaddress_entry = Entry(self.root, textvariable=emailaddress)
         emailaddress_entry.pack()
         Label(self.root, text="").pack()
-        Button(self.root, text="Register", bg="red", width="12", height="1", command=lambda:self.register_user()).pack()
+        Button(self.root, text="Register", bg="LightSteelBlue2", width="12", height="1", command=lambda:self.register_user()).pack()
         self.root.protocol('WM_DELETE_WINDOW', self.on_closing)
 
     def register_user(self):

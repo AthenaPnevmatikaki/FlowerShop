@@ -54,6 +54,27 @@ def initialise_flower_shop():
     flower = Flower(flower_dict={'type': 'Tulip', 'color': 'Yellow', 'name': 'Yellow Tulip', 'price': 4,
                                  'image': 'yellow tulip.jpg'})
     flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Snapdragon', 'color': 'Orange', 'name': 'Snapdragon', 'price': 3,
+                                 'image': 'Snapdragon.jpg'})
+    flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Magnolia', 'color': 'White', 'name': 'White Magnolia', 'price': 3,
+                                 'image': 'white_magnolia.jpg'})
+    flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Magnolia', 'color': 'Orange', 'name': 'Orange Magnolia', 'price': 3,
+                                 'image': 'orange_magnolia.jpg'})
+    flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Lily', 'color': 'Yellow', 'name': 'Yellow Lily', 'price': 3,
+                                 'image': 'yellow_lily.jpg'})
+    flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Chrysanthemum', 'color': 'Pink', 'name': 'Pink Chrysanthemum', 'price': 3,
+                                 'image': 'pink_chrysanthemum.jpg'})
+    flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Chrysanthemum', 'color': 'Orange', 'name': 'Orange Chrysanthemum', 'price': 3,
+                                 'image': 'orange_chrysanthemum.jpg'})
+    flower_shop.add_flower(flower)
+    flower = Flower(flower_dict={'type': 'Chrysanthemum', 'color': 'White', 'name': 'White Chrysanthemum', 'price': 3,
+                                 'image': 'white_chrysanthemum.jpg'})
+    flower_shop.add_flower(flower)
 
     bouquet = Bouquet(bouquet_dict={'name': 'Red Rose & White Carnations', 'flowers': [1, 1, 1, 1, 1, 3, 3, 3, 3],
                                     'image': 'red_roses_carnations.jpg'}, flowers=flower_shop.flowers)
@@ -78,6 +99,22 @@ def initialise_flower_shop():
     flower_shop.add_bouquet(bouquet)
     bouquet = Bouquet(bouquet_dict={'name': 'Pink & White Carnations', 'flowers': [3, 3, 3, 3, 4, 4, 4, 4, 4],
                                     'image': 'Pink & white carnations.jpg'}, flowers=flower_shop.flowers)
+    flower_shop.add_bouquet(bouquet)
+    bouquet = Bouquet(bouquet_dict={'name': 'Snapdragon compilation', 'flowers': [16, 16, 16, 16, 16, 16, 16, 16],
+                                    'image': 'snapdragon_bouquet.jpg'}, flowers=flower_shop.flowers)
+    flower_shop.add_bouquet(bouquet)
+    bouquet = Bouquet(bouquet_dict={'name': 'Magnolia compilation', 'flowers': [17, 17, 17, 17, 17, 17],
+                                    'image': 'Magnolia_bouguet.jpg'}, flowers=flower_shop.flowers)
+    flower_shop.add_bouquet(bouquet)
+    bouquet = Bouquet(bouquet_dict={'name': 'Yellow Delight', 'flowers': [5, 5, 5, 19, 19, 19, 16, 16, 16, 16, 16],
+                                    'image': 'Yellow_delight.jpg'}, flowers=flower_shop.flowers)
+    flower_shop.add_bouquet(bouquet)
+    bouquet = Bouquet(bouquet_dict={'name': 'Chrysanthemum Compilation', 'flowers': [22, 22, 22, 22, 22, 20, 20, 20, 20],
+                                    'image': 'chrysanthemum_compilation.jpg'}, flowers=flower_shop.flowers)
+    flower_shop.add_bouquet(bouquet)
+    bouquet = Bouquet(
+        bouquet_dict={'name': 'Wild Bloom', 'flowers': [21, 21, 21, 16, 16, 16, 3, 20, 20, 18, 18],
+                      'image': 'wild_bloom.jpg'}, flowers=flower_shop.flowers)
     flower_shop.add_bouquet(bouquet)
 
     user = User(user_dict={'email': 'a.pnevmatikaki@gmail.com', 'password': '1234', 'username': 'apne'})
