@@ -1,13 +1,13 @@
 {
     "name": "Flower Shop",
     "logged_user": null,
-    "flowers_id_counter": 5,
+    "flowers_id_counter": 15,
     "flowers": [
         {
             "id": 1,
             "type": "Rose",
             "color": "Red",
-            "name": "King Edward red rose",
+            "name": "Red Rose",
             "price": 4.5,
             "image": "king_Edward_red_rose.jpg"
         },
@@ -21,6 +21,22 @@
         },
         {
             "id": 3,
+            "type": "Carnation",
+            "color": "White",
+            "name": "White carnation",
+            "price": 2.5,
+            "image": "White Carnation.jpg"
+        },
+        {
+            "id": 4,
+            "type": "Carnation",
+            "color": "Pink",
+            "name": "Pink carnation",
+            "price": 2.5,
+            "image": "Pink Carnation.jpg"
+        },
+        {
+            "id": 5,
             "type": "Sunflower",
             "color": "Yellow",
             "name": "Sunflower",
@@ -28,37 +44,101 @@
             "image": "sunflower.jpg"
         },
         {
-            "id": 4,
+            "id": 6,
             "type": "Lily",
             "color": "White",
             "name": "Lily",
             "price": 5,
-            "image": "lily.jpg"
+            "image": "white_lily.jpg"
         },
         {
-            "id": 5,
+            "id": 7,
             "type": "Iris",
             "color": "Purple",
             "name": "Iris",
             "price": 3.5,
             "image": "iris.jpg"
+        },
+        {
+            "id": 8,
+            "type": "Hyacinth",
+            "color": "Pink",
+            "name": "Hyacinth",
+            "price": 4.5,
+            "image": "hyacinth.jpg"
+        },
+        {
+            "id": 9,
+            "type": "Lavender",
+            "color": "Purple",
+            "name": "Lavender",
+            "price": 0.4,
+            "image": "Lavender.jpg"
+        },
+        {
+            "id": 10,
+            "type": "Rose",
+            "color": "White",
+            "name": "White Rose",
+            "price": 4,
+            "image": "White_rose.jpg"
+        },
+        {
+            "id": 11,
+            "type": "Rose",
+            "color": "Pink",
+            "name": "Pink Rose",
+            "price": 4,
+            "image": "pink rose.jpg"
+        },
+        {
+            "id": 12,
+            "type": "Cala Lily",
+            "color": "Blue",
+            "name": "Blue Cala Lily",
+            "price": 5,
+            "image": "Blue_cala_lily.jpg"
+        },
+        {
+            "id": 13,
+            "type": "Tulip",
+            "color": "Pink",
+            "name": "Pink Tulip",
+            "price": 4,
+            "image": "Tulip Pink.jpg"
+        },
+        {
+            "id": 14,
+            "type": "Tulip",
+            "color": "White",
+            "name": "White Tulip",
+            "price": 4,
+            "image": "white_tulip.jpg"
+        },
+        {
+            "id": 15,
+            "type": "Tulip",
+            "color": "Yellow",
+            "name": "Yellow Tulip",
+            "price": 4,
+            "image": "yellow tulip.jpg"
         }
     ],
-    "bouquets_id_counter": 6,
+    "bouquets_id_counter": 8,
     "bouquets": [
         {
             "id": 1,
-            "name": "Red Rose & Carnations",
+            "name": "Red Rose & White Carnations",
             "flowers": [
                 1,
                 1,
                 1,
                 1,
                 1,
-                1,
-                2,
-                2,
-                2
+                3,
+                3,
+                3,
+                3
             ],
             "image": "red_roses_carnations.jpg"
         },
@@ -66,15 +146,15 @@
             "id": 2,
             "name": "Sunflowers & Lilies",
             "flowers": [
-                3,
-                3,
-                3,
-                4,
-                4,
-                4,
-                4,
-                4,
-                4
+                5,
+                5,
+                5,
+                5,
+                6,
+                6,
+                6,
+                6,
+                6
             ],
             "image": "sunflowers_lilies.jpg"
         },
@@ -87,21 +167,21 @@
                 1,
                 1,
                 1,
-                4,
-                4,
-                4,
-                4
+                6,
+                6,
+                6,
+                6
             ],
             "image": "red_roses_lilies.jpg"
         },
         {
             "id": 4,
-            "name": "Sunflowers & Carnations",
+            "name": "Sunflowers & Red Carnations",
             "flowers": [
-                3,
-                3,
-                3,
-                3,
+                5,
+                5,
+                5,
+                5,
                 2,
                 2,
                 2,
@@ -112,7 +192,7 @@
         },
         {
             "id": 5,
-            "name": "Iris & Carnations",
+            "name": "Iris & Red Carnations",
             "flowers": [
                 5,
                 5,
@@ -128,19 +208,57 @@
         },
         {
             "id": 6,
-            "name": "Iris & Lilies",
+            "name": "Iris & White Lilies",
             "flowers": [
-                5,
-                5,
-                5,
-                5,
-                5,
+                7,
+                7,
+                7,
+                7,
+                7,
+                6,
+                6,
+                6,
+                6
+            ],
+            "image": "iris_lilies.jpg"
+        },
+        {
+            "id": 7,
+            "name": "Lila Fantasy",
+            "flowers": [
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                10,
+                10,
+                10,
+                10,
+                11,
+                11,
+                12,
+                12,
+                12
+            ],
+            "image": "White&Pink_roses_tulips_lavender.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Pink & White Carnations",
+            "flowers": [
+                3,
+                3,
+                3,
+                3,
+                4,
                 4,
                 4,
                 4,
                 4
             ],
-            "image": "iris_lilies.jpg"
+            "image": "Pink & white carnations.jpg"
         }
     ],
     "users_id_counter": 1,
