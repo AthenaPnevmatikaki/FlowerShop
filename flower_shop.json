@@ -1,6 +1,11 @@
 {
     "name": "Flower Shop",
-    "logged_user": null,
+    "logged_user": {
+        "id": 1,
+        "email": "a.pnevmatikaki@gmail.com",
+        "password": "1234",
+        "username": "apne"
+    },
     "flowers_id_counter": 15,
     "flowers": [
         {
@@ -124,7 +129,7 @@
             "image": "yellow tulip.jpg"
         }
     ],
-    "bouquets_id_counter": 8,
+    "bouquets_id_counter": 10,
     "bouquets": [
         {
             "id": 1,
@@ -259,6 +264,22 @@
                 4
             ],
             "image": "Pink & white carnations.jpg"
+        },
+        {
+            "id": 9,
+            "name": "Sunflowers & Tulips",
+            "flowers": [
+                5,
+                5,
+                5,
+                5,
+                13,
+                13,
+                13,
+                13,
+                13
+            ],
+            "image": "generic_bouquet.jpg"
         }
     ],
     "users_id_counter": 1,
