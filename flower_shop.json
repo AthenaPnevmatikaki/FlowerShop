@@ -411,7 +411,10 @@
         {
             "id": 1,
             "user": 1,
-            "bouquet": 1
+            "bouquet": 1,
+            "credit_card": "123456789012",
+            "address": "Korinthou 80, Patras",
+            "order_date": "05/01/2020, 19:24:04"
         }
     ]
 }

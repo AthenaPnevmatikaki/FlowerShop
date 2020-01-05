@@ -119,7 +119,8 @@ def initialise_flower_shop():
 
     user = User(user_dict={'email': 'a.pnevmatikaki@gmail.com', 'password': '1234', 'username': 'apne'})
     flower_shop.add_user(user)
-    order = Order(order_dict={'user': 1, 'bouquet': 1}, bouquets=flower_shop.bouquets)
+    order = Order(order_dict={'user': 1, 'bouquet': 1, 'address': "Korinthou 80, Patras",
+                              'credit_card': '123456789012'}, bouquets=flower_shop.bouquets)
     flower_shop.add_order(order)
     flower_shop.save('../flower_shop.json')
 
