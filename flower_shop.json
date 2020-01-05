@@ -1,6 +1,11 @@
 {
     "name": "Flower Shop",
-    "logged_user": null,
+    "logged_user": {
+        "id": 1,
+        "email": "a.pnevmatikaki@gmail.com",
+        "password": "1234",
+        "username": "apne"
+    },
     "flowers_id_counter": 22,
     "flowers": [
         {
@@ -406,7 +411,7 @@
             "username": "apne"
         }
     ],
-    "orders_id_counter": 1,
+    "orders_id_counter": 2,
     "orders": [
         {
             "id": 1,
@@ -415,6 +420,14 @@
             "credit_card": "123456789012",
             "address": "Korinthou 80, Patras",
             "order_date": "05/01/2020, 19:24:04"
+        },
+        {
+            "id": 2,
+            "user": 1,
+            "bouquet": 3,
+            "credit_card": "123456789012",
+            "address": "Apollonos 10, Porto-Rafti",
+            "order_date": "05/01/2020, 20:23:28"
         }
     ]
 }

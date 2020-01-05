@@ -3,7 +3,9 @@ from PIL import ImageTk, Image
 from LoginFrame import LoginFrame
 from RegisterFrame import RegisterFrame
 from InfoFrame import InfoFrame
+from OrderFrame import OrderFrame
 from Bouquet import Bouquet
+from Order import Order
 
 
 class MainFrame(Frame):
@@ -21,6 +23,7 @@ class MainFrame(Frame):
         self.login_dialog = None
         self.register_dialog = None
         self.info_dialog = None
+        self.order_dialog = None
         self.start = 0
         self.page = 0
         self.pages = 0
@@ -134,7 +137,7 @@ class MainFrame(Frame):
         Label(self.frames[frame_index], text='Price: ' + str(bouquet.price) + "€").pack()
         if self.flower_shop.logged_user is not None:
             Button(self.frames[frame_index], text="Buy", bg="RosyBrown2", width="12", height="1",
-                   command=lambda: bouquet.buy()).pack()
+                   command=lambda: self.buy_bouquet(bouquet)).pack()
 
     def display_flower(self, flower, frame_index):
         Label(self.frames[frame_index], text=flower.name).grid(row=0, columnspan=3)
@@ -169,14 +172,12 @@ class MainFrame(Frame):
         RegisterFrame(root=self.register_dialog, parent=self, data=self.flower_shop)
 
     def on_successful_login(self):
-        print(self.flower_shop.to_json())
         self.login_dialog.destroy()
         self.root.attributes('-disabled', 'false')
         self.root.focus_force()
         self.display_menu()
 
     def on_successful_register(self):
-        print(self.flower_shop.to_json())
         self.flower_shop.save('../flower_shop.json')
         self.register_dialog.destroy()
         self.root.attributes('-disabled', 'false')
@@ -255,3 +256,26 @@ class MainFrame(Frame):
             self.flower_shop.save('../flower_shop.json')
             self.bouquet_name.set("")
             self.cancel_bouquet()
+
+    def buy_bouquet(self, bouquet):
+        self.order_dialog = Toplevel()
+        self.order_dialog.geometry("400x100")
+        self.order_dialog.focus_force()
+        self.order_dialog.attributes('-topmost', 'true')
+        self.root.attributes('-disabled', 'true')
+        OrderFrame(root=self.order_dialog, parent=self, data=self.flower_shop, bouquet_id=bouquet.id)
+
+    def on_cancelled_buy(self):
+        self.order_dialog.destroy()
+        self.root.attributes('-disabled', 'false')
+        self.root.focus_force()
+
+    def on_confirmed_buy(self, bouquet_id, address, credit_card):
+        address = str(address.get())
+        credit_card = str(credit_card.get())
+        if address != "" and credit_card != "":
+            order = Order(order_dict={'user': self.flower_shop.logged_user.id, 'bouquet': bouquet_id,'address': address,
+                                      'credit_card': credit_card}, bouquets=self.flower_shop.bouquets)
+            self.flower_shop.add_order(order)
+            self.flower_shop.save('../flower_shop.json')
+        self.on_cancelled_buy()
