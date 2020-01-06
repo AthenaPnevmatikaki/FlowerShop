@@ -31,6 +31,7 @@ class MainFrame(Frame):
         self.flower_counters = [0] * len(self.flower_shop.flowers)
         self.flower_counter_labels = [Label()] * len(self.flower_shop.flowers)
         self.bouquet_name = StringVar()
+        self.my_orders = []
         self.init_main_frame()
 
     def init_main_frame(self):
@@ -52,10 +53,12 @@ class MainFrame(Frame):
         menu = Menu(self.root)
         self.root.config(menu=menu)
         info = Menu(menu)
-        menu.add_cascade(label="Home")
-        menu.add_cascade(label="Flowers")
-        menu.add_cascade(label="Bouquets")
-        info.add_command(label="Contact Us", command=self.information)
+        if self.flower_shop.logged_user is not None:
+            action = Menu(menu)
+            menu.add_cascade(label="Action", menu=action)
+            action.add_command(label="Create Bouquet", command=self.create_bouquet)
+            action.add_command(label="Show Orders", command=self.show_orders)
+        info.add_command(label="About Us", command=self.information)
         menu.add_cascade(label="Info", menu=info)
         view = Menu(menu)
         menu.add_cascade(label="View", menu=view)
@@ -175,6 +178,10 @@ class MainFrame(Frame):
         self.login_dialog.destroy()
         self.root.attributes('-disabled', 'false')
         self.root.focus_force()
+        if self.flower_shop.logged_user is not None:
+            for order in self.flower_shop.orders:
+                if order.user == self.flower_shop.logged_user.id:
+                    self.my_orders.append(order)
         self.display_menu()
 
     def on_successful_register(self):
@@ -193,6 +200,7 @@ class MainFrame(Frame):
         InfoFrame(root=self.info_dialog, parent=self)
 
     def logout(self):
+        self.my_orders = []
         self.flower_shop.logged_user = None
         self.display_menu()
 
@@ -279,3 +287,6 @@ class MainFrame(Frame):
             self.flower_shop.add_order(order)
             self.flower_shop.save('../flower_shop.json')
         self.on_cancelled_buy()
+
+    def show_orders(self):
+        pass
