@@ -1,11 +1,6 @@
 {
     "name": "Flower Shop",
-    "logged_user": {
-        "id": 1,
-        "email": "a.pnevmatikaki@gmail.com",
-        "password": "1234",
-        "username": "apne"
-    },
+    "logged_user": null,
     "flowers_id_counter": 22,
     "flowers": [
         {
