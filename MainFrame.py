@@ -56,24 +56,22 @@ class MainFrame(Frame):
         menu = Menu(self.root)
         self.root.config(menu=menu)
         info = Menu(menu)
-        home=Menu(menu)
-        menu.add_cascade(label="Home",menu=home)
+        home = Menu(menu)
+        menu.add_cascade(label="Home", menu=home)
 
         if self.flower_shop.logged_user is not None:
             flowers = Menu(menu)
             menu.add_cascade(label="Flowers", menu=flowers)
-            flowers.add_command(label="Roses") #command=...
-            flowers.add_command(label="Carnation")#command=...
-            flowers.add_command(label="Chrysanthemum")#command=...
-            flowers.add_command(label="Tulips")#command=...
-            flowers.add_command(label="Lilies")#command=...
-            flowers.add_command(label="Others")#command=...
-            bouquets=Menu(menu)
-            menu.add_cascade(label="Bouquets",menu=bouquets)
-            bouquets.add_command(label="Our Favourites")#command=self.display_bouquets)
-            bouquets.add_command(label="Create Custom Bouquet",command=self.create_bouquet())
-
-
+            flowers.add_command(label="Roses")  # command=...
+            flowers.add_command(label="Carnation")  # command=...
+            flowers.add_command(label="Chrysanthemum")  # command=...
+            flowers.add_command(label="Tulips")  # command=...
+            flowers.add_command(label="Lilies")  # command=...
+            flowers.add_command(label="Others")  # command=...
+            bouquets = Menu(menu)
+            menu.add_cascade(label="Bouquets", menu=bouquets)
+            bouquets.add_command(label="Our Favourites")  # command=...
+            bouquets.add_command(label="Create Custom Bouquet") # command=...
 
         info.add_command(label="About Us", command=self.information)
         menu.add_cascade(label="Info", menu=info)
@@ -84,15 +82,6 @@ class MainFrame(Frame):
         view.add_command(label="4 x 3", command=lambda: self.change_grid(4, 3))
         view.add_command(label="5 x 3", command=lambda: self.change_grid(5, 3))
         user = Menu(menu)
-
-        if self.flower_shop.logged_user is not None:
-            cart=Menu(menu)
-            menu.add_cascade(label="Cart",menu=cart)
-            cart.add_command(label="MyCart")#command=...
-            cart.add_command(label="History",command=self.show_orders)
-
-
-
         if self.flower_shop.logged_user is None:
             menu.add_cascade(label="User", menu=user)
             user.add_command(label="Login", command=self.login)
@@ -103,7 +92,6 @@ class MainFrame(Frame):
         for frame in self.frames:
             for widget in frame.winfo_children():
                 widget.destroy()
-
         if self.showing == "bouquets":
             j = 0
             for i in range(self.start, self.start + self.nrows * self.ncols - 1):
@@ -128,7 +116,6 @@ class MainFrame(Frame):
                 next_button.config(state=NORMAL)
             else:
                 next_button.config(state=DISABLED)
-
         elif self.showing == "flowers":
             j = 0
             for i in range(self.start, self.start + self.nrows * self.ncols - 1):
@@ -156,7 +143,6 @@ class MainFrame(Frame):
                    command=lambda: self.confirm_bouquet()).grid(row=2, column=0, pady=5)
             Button(self.frames[j - self.start + 1], text="Cancel", bg="RosyBrown2", width="6", height="1",
                    command=lambda: self.cancel_bouquet()).grid(row=2, column=1, pady=5)
-
         elif self.showing == "orders":
             j = 0
             for i in range(self.start, self.start + self.nrows * self.ncols - 1):
