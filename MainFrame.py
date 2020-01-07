@@ -71,7 +71,7 @@ class MainFrame(Frame):
             bouquets = Menu(menu)
             menu.add_cascade(label="Bouquets", menu=bouquets)
             bouquets.add_command(label="Our Favourites")  # command=...
-            bouquets.add_command(label="Create Custom Bouquet") # command=...
+            bouquets.add_command(label="Create Custom Bouquet",command=self.create_bouquet)
 
         info.add_command(label="About Us", command=self.information)
         menu.add_cascade(label="Info", menu=info)
