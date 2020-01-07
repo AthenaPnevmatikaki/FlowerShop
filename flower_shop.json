@@ -1,6 +1,11 @@
 {
     "name": "Flower Shop",
-    "logged_user": null,
+    "logged_user": {
+        "id": 2,
+        "email": "marianabparasiri@gmail.com",
+        "password": "naigeiasas",
+        "username": "marpar"
+    },
     "flowers_id_counter": 22,
     "flowers": [
         {
@@ -180,7 +185,7 @@
             "image": "white_chrysanthemum.jpg"
         }
     ],
-    "bouquets_id_counter": 13,
+    "bouquets_id_counter": 15,
     "bouquets": [
         {
             "id": 1,
@@ -395,18 +400,47 @@
                 18
             ],
             "image": "wild_bloom.jpg"
+        },
+        {
+            "id": 14,
+            "name": "hfhg",
+            "flowers": [
+                2,
+                3
+            ],
+            "image": "generic_bouquet.jpg"
+        },
+        {
+            "id": 15,
+            "name": "Kuriakh",
+            "flowers": [
+                5,
+                5,
+                5,
+                15,
+                15,
+                15,
+                19
+            ],
+            "image": "generic_bouquet.jpg"
         }
     ],
-    "users_id_counter": 1,
+    "users_id_counter": 2,
     "users": [
         {
             "id": 1,
             "email": "a.pnevmatikaki@gmail.com",
             "password": "1234",
             "username": "apne"
+        },
+        {
+            "id": 2,
+            "email": "marianabparasiri@gmail.com",
+            "password": "naigeiasas",
+            "username": "marpar"
         }
     ],
-    "orders_id_counter": 2,
+    "orders_id_counter": 5,
     "orders": [
         {
             "id": 1,
@@ -423,6 +457,30 @@
             "credit_card": "123456789012",
             "address": "Apollonos 10, Porto-Rafti",
             "order_date": "05/01/2020, 20:23:28"
+        },
+        {
+            "id": 3,
+            "user": 1,
+            "bouquet": 11,
+            "credit_card": "123456789010",
+            "address": "Korinthou 80, Patras",
+            "order_date": "07/01/2020, 08:57:03"
+        },
+        {
+            "id": 4,
+            "user": 1,
+            "bouquet": 3,
+            "credit_card": "123456789010",
+            "address": "Korin8ou 79, patra",
+            "order_date": "07/01/2020, 16:27:12"
+        },
+        {
+            "id": 5,
+            "user": 1,
+            "bouquet": 7,
+            "credit_card": "123456789010",
+            "address": "esdrfghjkngfd",
+            "order_date": "07/01/2020, 17:36:59"
         }
     ]
 }
