@@ -6,7 +6,12 @@ from InfoFrame import InfoFrame
 from OrderFrame import OrderFrame
 from Bouquet import Bouquet
 from Order import Order
-
+import pyautogui
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
 
 class MainFrame(Frame):
     def __init__(self, root=None, data=None, ncols=None, nrows=None):
@@ -89,6 +94,9 @@ class MainFrame(Frame):
         else:
             menu.add_cascade(label=self.flower_shop.logged_user.username, menu=user)
             user.add_command(label="Log out", command=self.logout)
+            cart = Menu(menu)
+            menu.add_cascade(label='Cart', menu=cart)
+            cart.add_command(label='My cart', command=self.show_orders)
         for frame in self.frames:
             for widget in frame.winfo_children():
                 widget.destroy()
@@ -150,6 +158,7 @@ class MainFrame(Frame):
                     break
                 j = i
                 self.display_order(self.my_orders[i], i - self.start)
+
             Button(self.frames[j - self.start + 1], text="Back", bg="RosyBrown2", width="10", height="1",
                    command=lambda: self.cancel_bouquet()).grid(row=0, column=0, columnspan=2, pady=5)
             prev_button = Button(self.frames[j - self.start + 1], text="<", bg="RosyBrown2", width="4", height="1",
@@ -166,6 +175,8 @@ class MainFrame(Frame):
                 next_button.config(state=NORMAL)
             else:
                 next_button.config(state=DISABLED)
+            Button(self.frames[j - self.start + 1], text="Buy", bg="RosyBrown2", width="10", height="1",
+                   command=lambda: self.sendemail()).grid(row=2, column=0, columnspan=5, pady=5)
 
     def display_bouquet(self, bouquet, frame_index):
         Label(self.frames[frame_index], text=bouquet.name).pack()
@@ -347,3 +358,37 @@ class MainFrame(Frame):
         self.start = 0
         self.init_main_frame()
 
+    def sendemail(self):
+        myScreenshot = pyautogui.screenshot()
+        myScreenshot.save('order.png')
+
+        email_user = 'flowershop2020upatras@gmail.com'
+        email_password = 'flowershop123'
+        email_send = str(self.flower_shop.logged_user.email)
+
+        subject = 'Order'
+
+        msg = MIMEMultipart()
+        msg['From'] = email_user
+        msg['To'] = email_send
+        msg['Subject'] = subject
+
+        body = 'This is your order!'
+        msg.attach(MIMEText(body, 'plain'))
+
+        filename = 'order.png'
+        attachment = open(filename, 'rb')
+
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment; filename= " + filename)
+
+        msg.attach(part)
+        text = msg.as_string()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(email_user, email_password)
+
+        server.sendmail(email_user, email_send, text)
+        server.quit()
