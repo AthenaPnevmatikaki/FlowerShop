@@ -23,12 +23,12 @@ class OrderFrame(Frame):
         Entry(self.root, textvariable=self.credit_card, width=40).grid(row=0, column=1, columnspan=2)
         Label(self.root, text="Address").grid(row=1, column=0, pady=5)
         Entry(self.root, textvariable=self.address, width=40).grid(row=1, column=1, columnspan=2)
-        Label(self.root, text="Delivery Time and Date").grid(row=2, column=0)
+        Label(self.root, text="Delivery Time and Date",width = 30).grid(row=2, column=0)
         Entry(self.root, textvariable=self.delivery, width=40).grid(row=2, column=1, columnspan=2)
-        Button(self.root, text="Buy", bg="LightSteelBlue2", width="6", height="1",
-               command=lambda: self.check_credit_card(self.credit_card)).grid(row=4, column=1)
+        Button(self.root, text="Add", bg="LightSteelBlue2", width="6", height="1",
+                command=lambda: self.check_credit_card(self.credit_card)).grid(row=4, column=1)
         Button(self.root, text="Cancel", bg="LightSteelBlue2", width="6", height="1",
-               command=lambda: self.on_closing()).grid(row=4, column=2)
+                command=lambda: self.on_closing()).grid(row=4, column=2)
         self.root.protocol('WM_DELETE_WINDOW', self.on_closing)
 
     def on_closing(self):
@@ -75,6 +75,3 @@ class OrderFrame(Frame):
             Label(self.root, text="Wrong credit card number").grid(row=3, column=1)
         elif check == 'true':
             self.parent.on_confirmed_buy(self.bouquet_id, self.address, self.credit_card)
-
-
-
