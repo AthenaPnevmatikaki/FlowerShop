@@ -176,6 +176,7 @@ class MainFrame(Frame):
             Button(self.frames[j - self.start + 1], text="Buy", bg="RosyBrown2", width="10", height="1",
                    command=lambda: self.sendemail()).grid(row=2, column=0, columnspan=5, pady=5)
 
+
     def display_bouquet(self, bouquet, frame_index):
         Label(self.frames[frame_index], text=bouquet.name).pack()
         img = Image.open("../photos/" + bouquet.image)
@@ -261,7 +262,7 @@ class MainFrame(Frame):
     def logout(self):
         self.my_orders = []
         self.flower_shop.logged_user = None
-        self.display_menu()
+        self.cancel_bouquet()
 
     def change_grid(self, ncols, nrows):
         print("changing grid to " + str(ncols) + "x" + str(nrows))
@@ -326,7 +327,7 @@ class MainFrame(Frame):
 
     def buy_bouquet(self, bouquet):
         self.order_dialog = Toplevel()
-        self.order_dialog.geometry("400x100")
+        self.order_dialog.geometry("400x200")
         self.order_dialog.focus_force()
         self.order_dialog.attributes('-topmost', 'true')
         self.root.attributes('-disabled', 'true')
@@ -340,10 +341,11 @@ class MainFrame(Frame):
     def on_confirmed_buy(self, bouquet_id, address, credit_card):
         address = str(address.get())
         credit_card = str(credit_card.get())
-        if address != "" and credit_card != "":
+        if credit_card != "" and address != "":
             order = Order(order_dict={'user': self.flower_shop.logged_user.id, 'bouquet': bouquet_id,'address': address,
                                       'credit_card': credit_card}, bouquets=self.flower_shop.bouquets)
             self.flower_shop.add_order(order)
+            self.my_orders.append(order)
             self.flower_shop.save('../flower_shop.json')
         self.on_cancelled_buy()
 
@@ -390,3 +392,5 @@ class MainFrame(Frame):
 
         server.sendmail(email_user, email_send, text)
         server.quit()
+        self.my_orders = []
+        self.cancel_bouquet()
