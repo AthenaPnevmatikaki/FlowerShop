@@ -61,23 +61,23 @@ class MainFrame(Frame):
     def display_menu(self):
         menu = Menu(self.root)
         self.root.config(menu=menu)
-        info = Menu(menu)
         menu.add_command(label="Home", command=self.home_page)
         flowers = Menu(menu)
-        menu.add_cascade(label="Flowers", menu=flowers)
-        flowers.add_command(label="Roses")  # command=...
-        flowers.add_command(label="Carnation")  # command=...
-        flowers.add_command(label="Chrysanthemum")  # command=...
-        flowers.add_command(label="Tulips")  # command=...
-        flowers.add_command(label="Lilies")  # command=...
-        flowers.add_command(label="Others")  # command=...
-        bouquets = Menu(menu)
-        menu.add_cascade(label="Bouquets", menu=bouquets)
-        bouquets.add_command(label="Our Favourites", command=self.cancel_bouquet)
-        bouquets.add_command(label="Create Custom Bouquet",command=self.create_bouquet)
+        if self.flower_shop.logged_user is not None:
+            menu.add_cascade(label="Flowers", menu=flowers)
+            flowers.add_command(label="Roses")  # command=...
+            flowers.add_command(label="Carnation")  # command=...
+            flowers.add_command(label="Chrysanthemum")  # command=...
+            flowers.add_command(label="Tulips")  # command=...
+            flowers.add_command(label="Lilies")  # command=...
+            flowers.add_command(label="Others")  # command=...
+            bouquets = Menu(menu)
+            menu.add_cascade(label="Bouquets", menu=bouquets)
+            bouquets.add_command(label="Our Favourites", command=self.cancel_bouquet)
+            bouquets.add_command(label="Create Custom Bouquet",command=self.create_bouquet)
 
-        info.add_command(label="About Us", command=self.information)
-        menu.add_cascade(label="Info", menu=info)
+
+        menu.add_command(label="Info", command=self.information)
         view = Menu(menu)
         menu.add_cascade(label="View", menu=view)
         view.add_command(label="2 x 2", command=lambda: self.change_grid(2, 2))
@@ -94,7 +94,7 @@ class MainFrame(Frame):
             user.add_command(label="Log out", command=self.logout)
             cart = Menu(menu)
             menu.add_cascade(label='Cart', menu=cart)
-            cart.add_command(label='My cart', command=self.show_orders)
+            cart.add_command(label='History', command=self.show_orders)
         for frame in self.frames:
             for widget in frame.winfo_children():
                 widget.destroy()
