@@ -1,3 +1,4 @@
+#org
 from tkinter import *
 from PIL import ImageTk, Image
 from LoginFrame import LoginFrame
@@ -61,8 +62,7 @@ class MainFrame(Frame):
         menu = Menu(self.root)
         self.root.config(menu=menu)
         info = Menu(menu)
-        home = Menu(menu)
-        menu.add_cascade(label="Home", menu=home)
+        menu.add_command(label="Home", command=self.home_page)
         flowers = Menu(menu)
         menu.add_cascade(label="Flowers", menu=flowers)
         flowers.add_command(label="Roses")  # command=...
@@ -394,3 +394,20 @@ class MainFrame(Frame):
         server.quit()
         self.my_orders = []
         self.cancel_bouquet()
+
+
+    def home_page(self):
+        self.frames = []
+        self.showing = 0
+        self.root.configure(bg="LightSteelBlue2")
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        self.page = 0
+        self.start = 0
+        self.init_main_frame()
+        img = Image.open("../photos/hpage.jpg")
+        img = ImageTk.PhotoImage(img)
+        label = Label(self.root, image=img)
+        label.image = img
+        label.grid(row=1, column=2)
+
