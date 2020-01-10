@@ -182,10 +182,10 @@ class MainFrame(Frame):
         img = Image.open("../photos/" + bouquet.image)
         img = img.resize((130, 130), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(img)
-        label = Label(self.frames[frame_index], image=img)
+        label = Label(self.frames[frame_index], image=img,bg="LightSteelBlue2")
         label.image = img
         label.pack()
-        Label(self.frames[frame_index], text='Price: ' + str(bouquet.price) + "€").pack()
+        Label(self.frames[frame_index], text='Price: ' + str(bouquet.price) + "€",bg="LightSteelBlue2").pack()
         if self.flower_shop.logged_user is not None:
             Button(self.frames[frame_index], text="Add to cart", bg="RosyBrown2", width="12", height="1",
                    command=lambda: self.buy_bouquet(bouquet)).pack()
@@ -195,13 +195,13 @@ class MainFrame(Frame):
         img = Image.open("../photos/" + flower.image)
         img = img.resize((130, 130), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(img)
-        label = Label(self.frames[frame_index], image=img)
+        label = Label(self.frames[frame_index], image=img,bg="LightSteelBlue2")
         label.image = img
         label.grid(row=1, columnspan=3)
-        Label(self.frames[frame_index], text='Price: ' + str(flower.price) + "€").grid(row=2, columnspan=3)
+        Label(self.frames[frame_index], text='Price: ' + str(flower.price) + "€",bg="LightSteelBlue2").grid(row=2, columnspan=3)
         Button(self.frames[frame_index], text="-", bg="RosyBrown2", width="3", height="1",
                command=lambda: self.decrease_flower(flower)).grid(row=3, column=0)
-        self.flower_counter_labels[flower.id - 1] = Label(self.frames[frame_index], text='0')
+        self.flower_counter_labels[flower.id - 1] = Label(self.frames[frame_index], text='0',bg="LightSteelBlue2")
         self.flower_counter_labels[flower.id - 1].grid(row=3, column=1)
         Button(self.frames[frame_index], text="+", bg="RosyBrown2", width="3", height="1",
                command=lambda: self.increase_flower(flower)).grid(row=3, column=2)
@@ -211,12 +211,12 @@ class MainFrame(Frame):
         img = Image.open("../photos/" + order.bouquet.image)
         img = img.resize((130, 130), Image.ANTIALIAS)
         img = ImageTk.PhotoImage(img)
-        label = Label(self.frames[frame_index], image=img)
+        label = Label(self.frames[frame_index], image=img,bg="LightSteelBlue2")
         label.image = img
         label.grid(row=1, columnspan=3)
-        Label(self.frames[frame_index], text='Price: ' + str(order.bouquet.price) + "€").grid(row=2, columnspan=3)
-        Label(self.frames[frame_index], text="Sent to: " + order.address).grid(row=3, columnspan=3)
-        Label(self.frames[frame_index], text="Ordered on: " + order.order_date).grid(row=4, columnspan=3)
+        Label(self.frames[frame_index], text='Price: ' + str(order.bouquet.price) + "€",bg="LightSteelBlue2").grid(row=2, columnspan=3)
+        Label(self.frames[frame_index], text="Sent to: " + order.address,bg="LightSteelBlue2").grid(row=3, columnspan=3)
+        Label(self.frames[frame_index], text="Ordered on: " + order.order_date,bg="LightSteelBlue2").grid(row=4, columnspan=3)
 
     def login(self):
         self.login_dialog = Toplevel()
@@ -253,7 +253,7 @@ class MainFrame(Frame):
 
     def information(self):
         self.info_dialog = Toplevel()
-        self.info_dialog.geometry("200x90")
+        self.info_dialog.geometry("300x100")
         self.info_dialog.focus_force()
         self.info_dialog.attributes('-topmost', 'true')
         self.root.attributes('-disabled', 'true')

@@ -23,6 +23,7 @@ class RegisterFrame(Frame):
         username_entry.pack()
         Label(self.root, text="password").pack()
         password_entry = Entry(self.root, textvariable=password)
+        password_entry.config(show="*")
         password_entry.pack()
         Label(self.root, text="Email address").pack()
         emailaddress_entry = Entry(self.root, textvariable=emailaddress)
