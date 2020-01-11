@@ -66,14 +66,7 @@ class MainFrame(Frame):
         menu = Menu(self.root)
         self.root.config(menu=menu)
         menu.add_command(label="Home", command=self.home_page)
-        flowers = Menu(menu)
-        menu.add_cascade(label="Flowers", menu=flowers)
-        flowers.add_command(label="Roses")  # command=...
-        flowers.add_command(label="Carnation")  # command=...
-        flowers.add_command(label="Chrysanthemum")  # command=...
-        flowers.add_command(label="Tulips")  # command=...
-        flowers.add_command(label="Lilies")  # command=...
-        flowers.add_command(label="Others")  # command=...
+        menu.add_command(label="Flowers",command=self.display_flowers)
         bouquets = Menu(menu)
         menu.add_cascade(label="Bouquets", menu=bouquets)
         bouquets.add_command(label="Our Favourites", command=self.cancel_bouquet)
@@ -231,12 +224,13 @@ class MainFrame(Frame):
         label.image = img
         label.grid(row=1, columnspan=3)
         Label(self.frames[frame_index], text='Price: ' + str(flower.price) + "€").grid(row=2, columnspan=3)
-        Button(self.frames[frame_index], text="-", bg="RosyBrown2", width="3", height="1",
-               command=lambda: self.decrease_flower(flower)).grid(row=3, column=0)
-        self.flower_counter_labels[flower.id - 1] = Label(self.frames[frame_index], text='0')
-        self.flower_counter_labels[flower.id - 1].grid(row=3, column=1)
-        Button(self.frames[frame_index], text="+", bg="RosyBrown2", width="3", height="1",
-               command=lambda: self.increase_flower(flower)).grid(row=3, column=2)
+        if self.flower_shop.logged_user is not None:
+            Button(self.frames[frame_index], text="-", bg="RosyBrown2", width="3", height="1",
+                   command=lambda: self.decrease_flower(flower)).grid(row=3, column=0)
+            self.flower_counter_labels[flower.id - 1] = Label(self.frames[frame_index], text='0')
+            self.flower_counter_labels[flower.id - 1].grid(row=3, column=1)
+            Button(self.frames[frame_index], text="+", bg="RosyBrown2", width="3", height="1",
+                   command=lambda: self.increase_flower(flower)).grid(row=3, column=2)
 
     def display_order(self, order, frame_index):
         Label(self.frames[frame_index], text=order.bouquet.name).grid(row=0, columnspan=3)
@@ -457,7 +451,6 @@ class MainFrame(Frame):
     def home_page(self):
         self.frames = []
         self.showing = 0
-        self.root.configure(bg="LightSteelBlue2")
         for widget in self.root.winfo_children():
             widget.destroy()
         self.page = 0
@@ -469,5 +462,12 @@ class MainFrame(Frame):
         label.image = img
         label.grid(row=1, column=2)
 
-
+    def display_flowers(self):
+        self.frames = []
+        self.showing = "flowers"
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        self.page = 0
+        self.start = 0
+        self.init_main_frame()
 
