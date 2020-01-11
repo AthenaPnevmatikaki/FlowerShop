@@ -40,22 +40,22 @@ class OrderFrame(Frame):
             x = 0
             li = []
             s = 0
-            check=''
+            check = False
             for i in range(len(a)):
                 if a[i].isdigit():
                     li = li + [int(a[i])]
                 else:
                     x = 1
             if len(li) != 16:
-                check = 'false'
+                check = False
                 break
             for i in range(4, 15, 5):
                 if a[i] == ' ' or a[i] == '-': x = 0
             if x == 1:
-                check = 'false'
+                check = False
                 break
             if li[0] < 4 or li[0] > 7:
-                check = 'false'
+                check = False
                 break
             else:
                 for i in range(0, 15, 2):
@@ -66,12 +66,12 @@ class OrderFrame(Frame):
                 for i in li:
                     s = s + i
                 if s % 10 == 0:
-                    check = 'true'
+                    check = True
                     break
                 else:
-                    check = 'false'
+                    check = False
                     break
-        if check == 'false':
+        if not check:
             Label(self.root, text="Wrong credit card number").grid(row=3, column=1)
-        elif check == 'true':
-            self.parent.on_confirmed_buy(self.bouquets, self.address, self.credit_card)
+        else:
+            self.parent.on_confirmed_buy(self.address, self.credit_card)
