@@ -1,0 +1,486 @@
+{
+    "name": "Flower Shop",
+    "logged_user": {
+        "id": 2,
+        "email": "marianabparasiri@gmail.com",
+        "password": "naigeiasas",
+        "username": "marpar"
+    },
+    "flowers_id_counter": 22,
+    "flowers": [
+        {
+            "id": 1,
+            "type": "Rose",
+            "color": "Red",
+            "name": "Red Rose",
+            "price": 4.5,
+            "image": "king_Edward_red_rose.jpg"
+        },
+        {
+            "id": 2,
+            "type": "Carnation",
+            "color": "Red",
+            "name": "Red carnation",
+            "price": 2.5,
+            "image": "red_carnation.jpg"
+        },
+        {
+            "id": 3,
+            "type": "Carnation",
+            "color": "White",
+            "name": "White carnation",
+            "price": 2.5,
+            "image": "White Carnation.jpg"
+        },
+        {
+            "id": 4,
+            "type": "Carnation",
+            "color": "Pink",
+            "name": "Pink carnation",
+            "price": 2.5,
+            "image": "Pink Carnation.jpg"
+        },
+        {
+            "id": 5,
+            "type": "Sunflower",
+            "color": "Yellow",
+            "name": "Sunflower",
+            "price": 3,
+            "image": "sunflower.jpg"
+        },
+        {
+            "id": 6,
+            "type": "Lily",
+            "color": "White",
+            "name": "Lily",
+            "price": 5,
+            "image": "white_lily.jpg"
+        },
+        {
+            "id": 7,
+            "type": "Iris",
+            "color": "Purple",
+            "name": "Iris",
+            "price": 3.5,
+            "image": "iris.jpg"
+        },
+        {
+            "id": 8,
+            "type": "Hyacinth",
+            "color": "Pink",
+            "name": "Hyacinth",
+            "price": 4.5,
+            "image": "hyacinth.jpg"
+        },
+        {
+            "id": 9,
+            "type": "Lavender",
+            "color": "Purple",
+            "name": "Lavender",
+            "price": 0.4,
+            "image": "Lavender.jpg"
+        },
+        {
+            "id": 10,
+            "type": "Rose",
+            "color": "White",
+            "name": "White Rose",
+            "price": 4,
+            "image": "White_rose.jpg"
+        },
+        {
+            "id": 11,
+            "type": "Rose",
+            "color": "Pink",
+            "name": "Pink Rose",
+            "price": 4,
+            "image": "pink rose.jpg"
+        },
+        {
+            "id": 12,
+            "type": "Cala Lily",
+            "color": "Blue",
+            "name": "Blue Cala Lily",
+            "price": 5,
+            "image": "Blue_cala_lily.jpg"
+        },
+        {
+            "id": 13,
+            "type": "Tulip",
+            "color": "Pink",
+            "name": "Pink Tulip",
+            "price": 4,
+            "image": "Tulip Pink.jpg"
+        },
+        {
+            "id": 14,
+            "type": "Tulip",
+            "color": "White",
+            "name": "White Tulip",
+            "price": 4,
+            "image": "white_tulip.jpg"
+        },
+        {
+            "id": 15,
+            "type": "Tulip",
+            "color": "Yellow",
+            "name": "Yellow Tulip",
+            "price": 4,
+            "image": "yellow tulip.jpg"
+        },
+        {
+            "id": 16,
+            "type": "Snapdragon",
+            "color": "Orange",
+            "name": "Snapdragon",
+            "price": 3,
+            "image": "Snapdragon.jpg"
+        },
+        {
+            "id": 17,
+            "type": "Magnolia",
+            "color": "White",
+            "name": "White Magnolia",
+            "price": 3,
+            "image": "white_magnolia.jpg"
+        },
+        {
+            "id": 18,
+            "type": "Magnolia",
+            "color": "Orange",
+            "name": "Orange Magnolia",
+            "price": 3,
+            "image": "orange_magnolia.jpg"
+        },
+        {
+            "id": 19,
+            "type": "Lily",
+            "color": "Yellow",
+            "name": "Yellow Lily",
+            "price": 3,
+            "image": "yellow_lily.jpg"
+        },
+        {
+            "id": 20,
+            "type": "Chrysanthemum",
+            "color": "Pink",
+            "name": "Pink Chrysanthemum",
+            "price": 3,
+            "image": "pink_chrysanthemum.jpg"
+        },
+        {
+            "id": 21,
+            "type": "Chrysanthemum",
+            "color": "Orange",
+            "name": "Orange Chrysanthemum",
+            "price": 3,
+            "image": "orange_chrysanthemum.jpg"
+        },
+        {
+            "id": 22,
+            "type": "Chrysanthemum",
+            "color": "White",
+            "name": "White Chrysanthemum",
+            "price": 3,
+            "image": "white_chrysanthemum.jpg"
+        }
+    ],
+    "bouquets_id_counter": 15,
+    "bouquets": [
+        {
+            "id": 1,
+            "name": "Red Rose & White Carnations",
+            "flowers": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                3,
+                3,
+                3,
+                3
+            ],
+            "image": "red_roses_carnations.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Sunflowers & Lilies",
+            "flowers": [
+                5,
+                5,
+                5,
+                5,
+                6,
+                6,
+                6,
+                6,
+                6
+            ],
+            "image": "sunflowers_lilies.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Red Rose & Lilies",
+            "flowers": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                6,
+                6,
+                6,
+                6
+            ],
+            "image": "red_roses_lilies.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Sunflowers & Red Carnations",
+            "flowers": [
+                5,
+                5,
+                5,
+                5,
+                2,
+                2,
+                2,
+                2,
+                2
+            ],
+            "image": "sunflowers_carnations.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Iris & Red Carnations",
+            "flowers": [
+                5,
+                5,
+                5,
+                5,
+                2,
+                2,
+                2,
+                2,
+                2
+            ],
+            "image": "Iris_carnations.jpg"
+        },
+        {
+            "id": 6,
+            "name": "Iris & White Lilies",
+            "flowers": [
+                7,
+                7,
+                7,
+                7,
+                7,
+                6,
+                6,
+                6,
+                6
+            ],
+            "image": "iris_lilies.jpg"
+        },
+        {
+            "id": 7,
+            "name": "Lila Fantasy",
+            "flowers": [
+                8,
+                8,
+                8,
+                8,
+                8,
+                8,
+                10,
+                10,
+                10,
+                10,
+                11,
+                11,
+                12,
+                12,
+                12
+            ],
+            "image": "White&Pink_roses_tulips_lavender.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Pink & White Carnations",
+            "flowers": [
+                3,
+                3,
+                3,
+                3,
+                4,
+                4,
+                4,
+                4,
+                4
+            ],
+            "image": "Pink & white carnations.jpg"
+        },
+        {
+            "id": 9,
+            "name": "Snapdragon compilation",
+            "flowers": [
+                16,
+                16,
+                16,
+                16,
+                16,
+                16,
+                16,
+                16
+            ],
+            "image": "snapdragon_bouquet.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Magnolia compilation",
+            "flowers": [
+                17,
+                17,
+                17,
+                17,
+                17,
+                17
+            ],
+            "image": "Magnolia_bouguet.jpg"
+        },
+        {
+            "id": 11,
+            "name": "Yellow Delight",
+            "flowers": [
+                5,
+                5,
+                5,
+                19,
+                19,
+                19,
+                16,
+                16,
+                16,
+                16,
+                16
+            ],
+            "image": "Yellow_delight.jpg"
+        },
+        {
+            "id": 12,
+            "name": "Chrysanthemum Compilation",
+            "flowers": [
+                22,
+                22,
+                22,
+                22,
+                22,
+                20,
+                20,
+                20,
+                20
+            ],
+            "image": "chrysanthemum_compilation.jpg"
+        },
+        {
+            "id": 13,
+            "name": "Wild Bloom",
+            "flowers": [
+                21,
+                21,
+                21,
+                16,
+                16,
+                16,
+                3,
+                20,
+                20,
+                18,
+                18
+            ],
+            "image": "wild_bloom.jpg"
+        },
+        {
+            "id": 14,
+            "name": "hfhg",
+            "flowers": [
+                2,
+                3
+            ],
+            "image": "generic_bouquet.jpg"
+        },
+        {
+            "id": 15,
+            "name": "Kuriakh",
+            "flowers": [
+                5,
+                5,
+                5,
+                15,
+                15,
+                15,
+                19
+            ],
+            "image": "generic_bouquet.jpg"
+        }
+    ],
+    "users_id_counter": 2,
+    "users": [
+        {
+            "id": 1,
+            "email": "a.pnevmatikaki@gmail.com",
+            "password": "1234",
+            "username": "apne"
+        },
+        {
+            "id": 2,
+            "email": "marianabparasiri@gmail.com",
+            "password": "naigeiasas",
+            "username": "marpar"
+        }
+    ],
+    "orders_id_counter": 5,
+    "orders": [
+        {
+            "id": 1,
+            "user": 1,
+            "bouquet": 1,
+            "credit_card": "123456789012",
+            "address": "Korinthou 80, Patras",
+            "order_date": "05/01/2020, 19:24:04"
+        },
+        {
+            "id": 2,
+            "user": 1,
+            "bouquet": 3,
+            "credit_card": "123456789012",
+            "address": "Apollonos 10, Porto-Rafti",
+            "order_date": "05/01/2020, 20:23:28"
+        },
+        {
+            "id": 3,
+            "user": 1,
+            "bouquet": 11,
+            "credit_card": "123456789010",
+            "address": "Korinthou 80, Patras",
+            "order_date": "07/01/2020, 08:57:03"
+        },
+        {
+            "id": 4,
+            "user": 1,
+            "bouquet": 3,
+            "credit_card": "123456789010",
+            "address": "Korin8ou 79, patra",
+            "order_date": "07/01/2020, 16:27:12"
+        },
+        {
+            "id": 5,
+            "user": 1,
+            "bouquet": 7,
+            "credit_card": "123456789010",
+            "address": "esdrfghjkngfd",
+            "order_date": "07/01/2020, 17:36:59"
+        }
+    ]
+}
