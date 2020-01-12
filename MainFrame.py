@@ -1,23 +1,27 @@
-#org
 from tkinter import *
 from PIL import ImageTk, Image
-from LoginFrame import LoginFrame
-from RegisterFrame import RegisterFrame
-from InfoFrame import InfoFrame
-from OrderFrame import OrderFrame
-from Bouquet import Bouquet
-from Order import Order
 import pyautogui
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import smtplib
+from LoginFrame import LoginFrame
+from RegisterFrame import RegisterFrame
+from InfoFrame import InfoFrame
+from OrderFrame import OrderFrame
+from Bouquet import Bouquet
+from Order import Order
+import time
+
+
+
 
 class MainFrame(Frame):
     def __init__(self, root=None, data=None, ncols=None, nrows=None):
         Frame.__init__(self, root)
         self.root = root
+        self.root.iconbitmap('../photos/flower.ico')
         self.ncols = ncols
         if ncols is None:
             self.ncols = 4
@@ -33,14 +37,16 @@ class MainFrame(Frame):
         self.start = 0
         self.page = 0
         self.pages = 0
-        self.showing = "bouquets"
+        self.showing = "home_page"
         self.flower_counters = [0] * len(self.flower_shop.flowers)
         self.flower_counter_labels = [Label()] * len(self.flower_shop.flowers)
         self.bouquet_name = StringVar()
         self.my_orders = []
+        self.my_cart = []
+        self.total = 0
+        self.delivery = None
+        self.address = None
         self.init_main_frame()
-        self.my_cart=[]
-        self.total=0
 
     def init_main_frame(self):
         print(self.showing)
@@ -52,6 +58,8 @@ class MainFrame(Frame):
                 frame = Frame(self.root)
                 frame.grid(row=row, column=col, padx=5, pady=5)
                 self.frames.append(frame)
+        if self.showing == 'home_page':
+            self.home_page()
         if self.showing == "bouquets":
             self.pages = int((len(self.flower_shop.bouquets) + 1) / (self.ncols * self.nrows))
         elif self.showing == "flowers":
@@ -153,7 +161,7 @@ class MainFrame(Frame):
                 self.display_order(self.my_orders[i], i - self.start)
 
             Button(self.frames[j - self.start + 1], text="Back", bg="RosyBrown2", width="10", height="1",
-                   command=lambda: self.cancel_bouquet()).grid(row=0, column=0, columnspan=2, pady=5)
+                   command=lambda: self.home_page()).grid(row=0, column=0, columnspan=2, pady=5)
             prev_button = Button(self.frames[j - self.start + 1], text="<", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.previous_page())
             prev_button.grid(row=1, column=0)
@@ -164,7 +172,7 @@ class MainFrame(Frame):
             next_button = Button(self.frames[j - self.start + 1], text=">", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.next_page())
             next_button.grid(row=1, column=1)
-            if self.page < self.pages and len(self.flower_shop.bouquets) >= self.ncols * self.nrows:
+            if self.page < self.pages and len(self.flower_shop.orders) >= self.ncols * self.nrows:
                 next_button.config(state=NORMAL)
             else:
                 next_button.config(state=DISABLED)
@@ -175,9 +183,9 @@ class MainFrame(Frame):
                     break
                 j = i
                 self.display_my_cart(self.my_cart[i], i - self.start)
-
+                
             Button(self.frames[j - self.start + 1], text="Back", bg="RosyBrown2", width="10", height="1",
-                   command=lambda: self.cancel_bouquet()).grid(row=0, column=0, columnspan=2, pady=5)
+                   command=lambda: self.home_page()).grid(row=0, column=0, columnspan=2, pady=5)
             prev_button = Button(self.frames[j - self.start + 1], text="<", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.previous_page())
             prev_button.grid(row=1, column=0)
@@ -188,17 +196,24 @@ class MainFrame(Frame):
             next_button = Button(self.frames[j - self.start + 1], text=">", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.next_page())
             next_button.grid(row=1, column=1)
-            if self.page < self.pages and len(self.flower_shop.bouquets) >= self.ncols * self.nrows:
+            if self.page < self.pages and len(self.my_cart) >= self.ncols * self.nrows:
                 next_button.config(state=NORMAL)
             else:
                 next_button.config(state=DISABLED)
-            Button(self.frames[j - self.start + 1], text="Buy", bg="RosyBrown2", width="10", height="1",
-                   command=lambda: self.buy_bouquet()).grid(row=2, column=0, columnspan=5, pady=5)
+            buy_button = Button(self.frames[j - self.start + 1], text="Buy", bg="RosyBrown2", width="10", height="1",
+                   command=lambda: self.buy_bouquet())
+            buy_button.grid(row=2, column=0, columnspan=5, pady=5)
+            if len(self.my_cart) == 0:
+                buy_button.config(state=DISABLED)
+            else:
+                buy_button.config(state=NORMAL)
             Button(self.frames[j - self.start + 1], text="Cancel", bg="RosyBrown2", width="10", height="1",
                    command=lambda: self.empty_cart()).grid(row=3, column=0, columnspan=5, pady=5)
+            Label(self.frames[j - self.start + 1], text='Order price: ' + str(self.total) + "€").grid(row=4, column = 0,columnspan=5)
 
     def empty_cart(self):
-        self.my_cart=[]
+        self.my_cart = []
+        self.total = 0
         self.home_page()
 
 
@@ -361,7 +376,7 @@ class MainFrame(Frame):
             self.bouquet_name.set("")
             self.cancel_bouquet()
 
-    def add_bouquet(self, bouquet):    ###################
+    def add_bouquet(self, bouquet):
         self.my_cart.append(bouquet)
         for bouquet in self.my_cart:
             self.total += bouquet.price
@@ -379,17 +394,20 @@ class MainFrame(Frame):
         self.root.attributes('-disabled', 'false')
         self.root.focus_force()
 
-    def on_confirmed_buy(self, bouquets, address, credit_card):
-        address = str(address.get())
+    def on_confirmed_buy(self, address, credit_card, delivery):
+        self.on_cancelled_buy()
+        self.address = str(address.get())
         credit_card = str(credit_card.get())
+        self.delivery = str(delivery.get())
         if credit_card != "" and address != "":
-            order = Order(order_dict={'user': self.flower_shop.logged_user.id, 'bouquet': [bouquet.id for bouquet in self.my_cart],'address': address,
-                                      'credit_card': credit_card}, bouquets=self.flower_shop.bouquets)
-            self.flower_shop.add_order(order)
-            self.my_orders.append(order)
+            for bouquet in self.my_cart:
+                order = Order(order_dict={'user': self.flower_shop.logged_user.id, 'bouquet': bouquet.id,
+                                          'address': self.address, 'credit_card': credit_card},
+                              bouquets=self.flower_shop.bouquets)
+                self.flower_shop.add_order(order)
+                self.my_orders.append(order)
             self.flower_shop.save('../flower_shop.json')
-        self.sendemail()
-        self.empty_cart()
+            self.send_email()
 
     def show_orders(self):
         self.frames = []
@@ -409,53 +427,49 @@ class MainFrame(Frame):
         self.start = 0
         self.init_main_frame()
 
-
-    def sendemail(self):
-        myScreenshot = pyautogui.screenshot()
-        myScreenshot.save('order.png')
-
+    def send_email(self):
         email_user = 'flowershop2020upatras@gmail.com'
         email_password = 'flowershop123'
         email_send = str(self.flower_shop.logged_user.email)
-
         subject = 'Order'
-
         msg = MIMEMultipart()
         msg['From'] = email_user
         msg['To'] = email_send
         msg['Subject'] = subject
-
-        body = 'This is your order!'
-        msg.attach(MIMEText(body, 'plain'))
-
-        filename = 'order.png'
-        attachment = open(filename, 'rb')
-
-        part = MIMEBase('application', 'octet-stream')
-        part.set_payload((attachment).read())
-        encoders.encode_base64(part)
-        part.add_header('Content-Disposition', "attachment; filename= " + filename)
-
-        msg.attach(part)
+        if len(self.my_cart) <15:
+            body = 'This is your order!'
+            msg.attach(MIMEText(body, 'plain'))
+            time.sleep(2)
+            my_screenshot = pyautogui.screenshot()
+            my_screenshot.save('order.png')
+            filename = 'order.png'
+            attachment = open(filename, 'rb')
+            part = MIMEBase('application', 'octet-stream')
+            part.set_payload((attachment).read())
+            encoders.encode_base64(part)
+            part.add_header('Content-Disposition', "attachment; filename= " + filename)
+            msg.attach(part)
+        else:
+            body = 'Your order will be delivered at '+str(self.address)+' on '+str(self.delivery)
+            msg.attach(MIMEText(body, 'plain'))
         text = msg.as_string()
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(email_user, email_password)
-
         server.sendmail(email_user, email_send, text)
         server.quit()
-        self.my_orders = []
-        self.cancel_bouquet()
-
+        self.empty_cart()
 
     def home_page(self):
         self.frames = []
-        self.showing = 0
+        self.showing = 'home_page'
         for widget in self.root.winfo_children():
             widget.destroy()
         self.page = 0
         self.start = 0
-        self.init_main_frame()
+        self.display_menu()
+        label = Label(self.root, text='Το λέλουδο')
+        label.grid(row=0)
         img = Image.open("../photos/hpage.jpg")
         img = ImageTk.PhotoImage(img)
         label = Label(self.root, image=img)
@@ -470,4 +484,3 @@ class MainFrame(Frame):
         self.page = 0
         self.start = 0
         self.init_main_frame()
-
