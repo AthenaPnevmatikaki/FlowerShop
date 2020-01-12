@@ -12,6 +12,10 @@ from InfoFrame import InfoFrame
 from OrderFrame import OrderFrame
 from Bouquet import Bouquet
 from Order import Order
+import time
+import zipfile
+import os
+
 
 
 class MainFrame(Frame):
@@ -33,7 +37,7 @@ class MainFrame(Frame):
         self.start = 0
         self.page = 0
         self.pages = 0
-        self.showing = "bouquets"
+        self.showing = "home_page"
         self.flower_counters = [0] * len(self.flower_shop.flowers)
         self.flower_counter_labels = [Label()] * len(self.flower_shop.flowers)
         self.bouquet_name = StringVar()
@@ -52,6 +56,8 @@ class MainFrame(Frame):
                 frame = Frame(self.root)
                 frame.grid(row=row, column=col, padx=5, pady=5)
                 self.frames.append(frame)
+        if self.showing == 'home_page':
+            self.home_page()
         if self.showing == "bouquets":
             self.pages = int((len(self.flower_shop.bouquets) + 1) / (self.ncols * self.nrows))
         elif self.showing == "flowers":
@@ -153,7 +159,7 @@ class MainFrame(Frame):
                 self.display_order(self.my_orders[i], i - self.start)
 
             Button(self.frames[j - self.start + 1], text="Back", bg="RosyBrown2", width="10", height="1",
-                   command=lambda: self.cancel_bouquet()).grid(row=0, column=0, columnspan=2, pady=5)
+                   command=lambda: self.home_page()).grid(row=0, column=0, columnspan=2, pady=5)
             prev_button = Button(self.frames[j - self.start + 1], text="<", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.previous_page())
             prev_button.grid(row=1, column=0)
@@ -164,7 +170,7 @@ class MainFrame(Frame):
             next_button = Button(self.frames[j - self.start + 1], text=">", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.next_page())
             next_button.grid(row=1, column=1)
-            if self.page < self.pages and len(self.flower_shop.bouquets) >= self.ncols * self.nrows:
+            if self.page < self.pages and len(self.flower_shop.orders) >= self.ncols * self.nrows:
                 next_button.config(state=NORMAL)
             else:
                 next_button.config(state=DISABLED)
@@ -175,9 +181,9 @@ class MainFrame(Frame):
                     break
                 j = i
                 self.display_my_cart(self.my_cart[i], i - self.start)
-
+                
             Button(self.frames[j - self.start + 1], text="Back", bg="RosyBrown2", width="10", height="1",
-                   command=lambda: self.cancel_bouquet()).grid(row=0, column=0, columnspan=2, pady=5)
+                   command=lambda: self.home_page()).grid(row=0, column=0, columnspan=2, pady=5)
             prev_button = Button(self.frames[j - self.start + 1], text="<", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.previous_page())
             prev_button.grid(row=1, column=0)
@@ -188,7 +194,7 @@ class MainFrame(Frame):
             next_button = Button(self.frames[j - self.start + 1], text=">", bg="RosyBrown2", width="4", height="1",
                                  command=lambda: self.next_page())
             next_button.grid(row=1, column=1)
-            if self.page < self.pages and len(self.flower_shop.bouquets) >= self.ncols * self.nrows:
+            if self.page < self.pages and len(self.my_cart) >= self.ncols * self.nrows:
                 next_button.config(state=NORMAL)
             else:
                 next_button.config(state=DISABLED)
@@ -196,9 +202,11 @@ class MainFrame(Frame):
                    command=lambda: self.buy_bouquet()).grid(row=2, column=0, columnspan=5, pady=5)
             Button(self.frames[j - self.start + 1], text="Cancel", bg="RosyBrown2", width="10", height="1",
                    command=lambda: self.empty_cart()).grid(row=3, column=0, columnspan=5, pady=5)
+            Label(self.frames[j - self.start + 1], text='Order price: ' + str(self.total) + "€").grid(row=4, column = 0,columnspan=5)
 
     def empty_cart(self):
         self.my_cart = []
+        self.total = 0
         self.home_page()
 
 
@@ -392,7 +400,6 @@ class MainFrame(Frame):
                 self.my_orders.append(order)
             self.flower_shop.save('../flower_shop.json')
             self.send_email()
-            self.empty_cart()
 
     def show_orders(self):
         self.frames = []
@@ -438,16 +445,16 @@ class MainFrame(Frame):
         server.login(email_user, email_password)
         server.sendmail(email_user, email_send, text)
         server.quit()
-        self.cancel_bouquet()
+        self.empty_cart()
 
     def home_page(self):
         self.frames = []
-        self.showing = 0
+        self.showing = 'home_page'
         for widget in self.root.winfo_children():
             widget.destroy()
         self.page = 0
         self.start = 0
-        self.init_main_frame()
+        self.display_menu()
         img = Image.open("../photos/hpage.jpg")
         img = ImageTk.PhotoImage(img)
         label = Label(self.root, image=img)
