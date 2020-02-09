@@ -19,6 +19,7 @@ class LoginFrame(Frame):
         username_entry1.pack()
         Label(self.root, text="password").pack()
         password_entry1 = Entry(self.root, textvariable=password_verify)
+        password_entry1.config(show="*")
         password_entry1.pack()
         Label(self.root, text="").pack()
         Button(self.root, text="Login", bg="LightSteelBlue2", width="12", height="1", command=lambda: self.login_verify()).pack()

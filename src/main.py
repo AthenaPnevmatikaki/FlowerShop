@@ -125,7 +125,7 @@ def initialise_flower_shop():
     flower_shop.save('../flower_shop.json')
 
 
-flower_shop = FlowerShop("Flower Shop", [], [], [], [])
+flower_shop = FlowerShop("Flower", [], [], [], [])
 if os.path.exists('../flower_shop.json'):
     print('Loading flower shop data')
     flower_shop.load('../flower_shop.json')
